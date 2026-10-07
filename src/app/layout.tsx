@@ -64,6 +64,14 @@ export const metadata: Metadata = {
       "application/rss+xml": "/rss.xml",
     },
   },
+  icons: {
+    icon: [
+      {
+        url: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/logo.jpg`,
+        type: "image/jpeg",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
