@@ -15,6 +15,18 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## GitHub Pages
 
+GitHub Free requires a **public** repository for Pages. The site remains `noindex` so search engines should not list it.
+
+Redeploy after changes with:
+
+```bash
+npm run deploy:pages
+```
+
+
+GitHub Free requires a **public** repository for Pages. The site remains `noindex` so search engines should not list it.
+
+
 The site is deployed as a static export to GitHub Pages from the `main` branch.
 
 - Live URL: https://thelonestryker-12.github.io/ThriveWellCareCollective/
