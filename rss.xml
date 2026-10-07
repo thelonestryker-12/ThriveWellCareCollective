@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+  <channel>
+    <title>ThriveWell Care Collective™ Blog</title>
+    <link>https://thelonestryker-12.github.io/ThriveWellCareCollective/blog</link>
+    <description>Notes on rest, restoration, and everyday wellness from ThriveWell Care Collective™.</description>
+    <item>
+      <title>Welcome to the ThriveWell journal</title>
+      <link>https://thelonestryker-12.github.io/ThriveWellCareCollective/blog/welcome</link>
+      <guid>https://thelonestryker-12.github.io/ThriveWellCareCollective/blog/welcome</guid>
+      <pubDate>Mon, 07 Sep 2026 00:00:00 GMT</pubDate>
+      <description>A quiet place for notes on rest, caregiving, and everyday wellness. More writing will appear here soon.</description>
+    </item>
+  </channel>
+</rss>
