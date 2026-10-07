@@ -1,8 +1,8 @@
 # ThriveWell Care Collective™
 
-Public website for [thrivewellcarecollective.com](https://thrivewellcarecollective.com).
+Website for [thrivewellcarecollective.com](https://thrivewellcarecollective.com).
 
-The site is built in Next.js with the brand fonts, colors, and copy from the ThriveWell webpage design guide: **Cormorant Garamond** for headings, **Montserrat** for body text, and the Deep Teal / Sage / Coral / Warm Ivory palette.
+Built with Next.js using the brand fonts, colors, and copy from the ThriveWell webpage design guide: **Cormorant Garamond** for headings, **Montserrat** for body text, and the Deep Teal / Sage / Coral / Warm Ivory palette.
 
 ## Local development
 
@@ -12,6 +12,20 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
+
+## GitHub Pages
+
+The site is deployed as a static export to GitHub Pages from the `main` branch.
+
+- Live URL: https://thelonestryker-12.github.io/ThriveWellCareCollective/
+- Workflow: `.github/workflows/deploy-pages.yml`
+- All pages are set to `noindex` / `nofollow`, and `robots.txt` disallows crawling
+
+Build the Pages export locally:
+
+```bash
+GITHUB_PAGES=true npm run build
+```
 
 ## Add a blog post
 
@@ -32,16 +46,8 @@ draft: false
 ```
 
 4. Write the article in Markdown below the front matter.
-5. Set `draft: false` when it should appear on `/blog`, in the sitemap, and in `/rss.xml`.
+5. Set `draft: false` when it should appear on `/blog` and in `/rss.xml`.
 
 ## Scheduling inquiries
 
-The schedule form saves requests on the server log by default. To email them, set:
-
-```bash
-CONTACT_EMAIL=hello@thrivewellcarecollective.com
-RESEND_API_KEY=...
-RESEND_FROM_EMAIL=ThriveWell Website <noreply@thrivewellcarecollective.com>
-```
-
-Update the public email in `src/lib/site.ts` if it should be different.
+On the static GitHub Pages site, the schedule form opens a prefilled email to `hello@thrivewellcarecollective.com`. Update that address in `src/lib/site.ts` if needed.

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { ScheduleForm } from "@/components/schedule-form";
 import { SectionHeading } from "@/components/ui";
 import { siteConfig } from "@/lib/site";
@@ -10,14 +11,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/schedule" },
 };
 
-export default async function SchedulePage({
-  searchParams,
-}: {
-  searchParams: Promise<{ service?: string | string[] }>;
-}) {
-  const params = await searchParams;
-  const service = typeof params.service === "string" ? params.service : undefined;
-
+export default function SchedulePage() {
   return (
     <section className="bg-ivory py-20">
       <div className="mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
@@ -37,12 +31,23 @@ export default async function SchedulePage({
           </p>
           <p className="mt-6 text-sm">
             Prefer email?{" "}
-            <a className="text-teal underline underline-offset-4" href={`mailto:${siteConfig.email}`}>
+            <a
+              className="text-teal underline underline-offset-4"
+              href={`mailto:${siteConfig.email}`}
+            >
               {siteConfig.email}
             </a>
           </p>
         </div>
-        <ScheduleForm defaultService={service} />
+        <Suspense
+          fallback={
+            <div className="rounded-3xl bg-white p-8 text-sm text-charcoal/70">
+              Loading the scheduling form...
+            </div>
+          }
+        >
+          <ScheduleForm />
+        </Suspense>
       </div>
     </section>
   );
