@@ -22,7 +22,7 @@ export function HowToStart() {
           ))}
         </ol>
         <div className="mt-10">
-          <ButtonLink href="/schedule">Schedule Your Experience</ButtonLink>
+          <ButtonLink href="/schedule">Schedule Your Virtual Intake</ButtonLink>
         </div>
       </div>
     </section>

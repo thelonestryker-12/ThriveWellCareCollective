@@ -22,11 +22,11 @@ export function Header() {
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
         <Link href="/" className="shrink-0" aria-label={`${siteConfig.legalName} home`} onClick={() => setOpen(false)}>
           <Image
-            src="/logo.jpg"
+            src="/logo-full.png"
             alt={`${siteConfig.legalName} logo`}
-            width={1024}
-            height={341}
-            className="h-12 w-auto sm:h-14"
+            width={1952}
+            height={646}
+            className="h-14 w-auto sm:h-16"
             priority
           />
         </Link>

@@ -218,6 +218,13 @@ export const membership = {
   cta: "Join ThriveWell Monthly Reset™",
 };
 
+export const caregiverWellIntro = {
+  eyebrow: "CaregiverWell™ Experiences",
+  title: "Care for yourself, too.",
+  intro:
+    "Caregiving asks a lot of you. CaregiverWell™ experiences combine therapeutic massage and guided wellness practices to help family and professional caregivers step away from daily demands, restore their energy, and reconnect with their own needs.",
+};
+
 export const caregiverWellPackages: ExperiencePackage[] = [
   {
     slug: "caregiver-pause",
@@ -230,8 +237,9 @@ export const caregiverWellPackages: ExperiencePackage[] = [
       "20-minute licensed chair massage",
       "Guided breathing",
       "Grounding practice",
-      "Guided relaxation",
+      "Gentle tension check-in",
     ],
+    note: "A practical reset to help you step away, settle in, and return with more ease.",
     cta: "Choose Caregiver Pause™",
   },
   {
@@ -240,14 +248,14 @@ export const caregiverWellPackages: ExperiencePackage[] = [
     duration: "75 minutes",
     price: "$125",
     summary:
-      "Our core CaregiverWell™ experience combines the ThriveWell Signature Massage™ with guided wellness practices.",
+      "Our core CaregiverWell™ experience combines the ThriveWell Signature Massage™ with guided wellness practices created for family and professional caregivers.",
     includes: [
       "60-minute ThriveWell Signature Massage™",
       "Guided breathing",
       "Grounding practice",
       "Guided relaxation",
     ],
-    note: "An uninterrupted experience designed to give you time to settle in, recharge, and reconnect.",
+    note: "An uninterrupted experience designed to help you restore energy and reconnect with your own needs.",
     cta: "Choose Caregiver Reset™",
   },
   {
@@ -262,12 +270,19 @@ export const caregiverWellPackages: ExperiencePackage[] = [
       "Guided breathing",
       "Grounding practice",
       "Guided relaxation",
-      "Mindfulness practice",
+      "Mindfulness reflection",
     ],
-    note: "A longer experience for the times when you want more space to settle in and restore.",
+    note: "A longer experience for the times when you need more space to settle in, restore, and return.",
     cta: "Choose Caregiver Restore™",
   },
 ];
+
+export const motherWellIntro = {
+  eyebrow: "MotherWell™ Experiences",
+  title: "A little space that is simply yours.",
+  intro:
+    "Motherhood brings many responsibilities, changes, and demands on your time and energy. MotherWell™ experiences combine therapeutic massage and guided wellness practices to create space for rest, self-compassion, and reconnecting with yourself beyond the everyday responsibilities of motherhood.",
+};
 
 export const motherWellPackages: ExperiencePackage[] = [
   {
@@ -276,13 +291,14 @@ export const motherWellPackages: ExperiencePackage[] = [
     duration: "45 minutes",
     price: "$65",
     summary:
-      "A shorter restorative experience that creates dedicated time for you.",
+      "A shorter restorative experience that creates dedicated time just for you.",
     includes: [
       "20-minute licensed chair massage",
-      "Guided breathing",
-      "Grounding practice",
+      "Mindful breathing",
+      "Body awareness practice",
       "Guided relaxation",
     ],
+    note: "A gentle pause to help you reconnect with yourself in the midst of motherhood.",
     cta: "Choose MotherWell™ Moment",
   },
   {
@@ -294,8 +310,8 @@ export const motherWellPackages: ExperiencePackage[] = [
       "A restorative combination of the ThriveWell Signature Massage™ and guided wellness practices designed specifically for mothers.",
     includes: [
       "60-minute ThriveWell Signature Massage™",
-      "Guided breathing",
-      "Grounding practice",
+      "Mindful breathing",
+      "Body awareness",
       "Guided relaxation",
     ],
     note: "Dedicated time to slow down, recharge, and reconnect with yourself.",
@@ -310,12 +326,12 @@ export const motherWellPackages: ExperiencePackage[] = [
       "Our most immersive MotherWell™ experience provides additional time for massage, relaxation, and quiet restoration.",
     includes: [
       "90-minute ThriveWell Signature Massage™",
-      "Guided breathing",
-      "Grounding practice",
+      "Mindful breathing",
       "Guided relaxation",
-      "Mindfulness practice",
+      "Self-compassion reflection",
+      "Quiet restoration",
     ],
-    note: "A longer experience when you want to give yourself more time to settle in and restore.",
+    note: "A longer experience when you want to give yourself more space to settle in and restore.",
     cta: "Choose MotherWell™ Restore",
   },
 ];
@@ -362,18 +378,18 @@ export const getStartedSteps = [
   },
   {
     step: "2",
-    title: "Choose",
-    body: "Select what feels right for you today. You do not need to choose the perfect experience. Start with what interests you.",
+    title: "Connect",
+    body: "Meet with us for a brief virtual intake through Microsoft Teams. We'll learn about your needs, answer questions, and help personalize your experience.",
   },
   {
     step: "3",
     title: "Schedule",
-    body: "Choose an available time that works for you.",
+    body: "Following your intake, we'll help you select the right service and schedule your first experience.",
   },
   {
     step: "4",
     title: "Arrive",
-    body: "Come as you are. You do not need to prepare or have previous experience with any of our wellness practices. We will guide you from there.",
+    body: "Come as you are. No special preparation or previous experience is needed. We'll guide you from there.",
   },
 ];
 

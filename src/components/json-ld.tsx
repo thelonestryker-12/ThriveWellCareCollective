@@ -17,7 +17,7 @@ export function JsonLd() {
         url: siteConfig.domain,
         email: siteConfig.email,
         description: siteConfig.description,
-        image: `${siteConfig.domain}/logo.jpg`,
+        image: `${siteConfig.domain}/logo-full.png`,
         areaServed: {
           "@type": "AdministrativeArea",
           name: "Lehigh Valley, Pennsylvania",

@@ -21,25 +21,27 @@ export default function AboutPage() {
           />
           <div className="mt-8 space-y-5 text-base leading-8">
             <p>
-              ThriveWell Care Collective™ was built around a simple belief: people
-              who care for others should have meaningful opportunities to care for their
-              own well-being, too.
+              ThriveWell Care Collective™ was founded on a simple belief: women who
+              spend so much of their lives caring for others deserve opportunities to
+              care for themselves, too.
             </p>
             <p>
               We bring together experience in education, wellness, caregiving, and
               licensed massage therapy to create restorative experiences that fit into
-              real life.
+              everyday life. Our approach is welcoming, practical, and personal.
             </p>
-            <p>Our approach is welcoming, practical, and personal.</p>
-            <p>We are not here to tell you what wellness should look like.</p>
             <p>
-              We want to give you options and help you discover what restoration looks
-              like for you. That may mean massage. It may mean quiet. It may mean
-              learning a breathing, mindfulness, or grounding practice. Or it may
-              simply mean having a place where you can slow down for a while.
+              We believe wellness looks different for everyone. For some, it means the
+              restorative benefits of massage. For others, it may be a moment of quiet,
+              a guided breathing or mindfulness practice, or an opportunity to slow down
+              and reconnect with themselves.
+            </p>
+            <p>
+              Through personalized experiences, we offer women meaningful ways to pause,
+              restore, and reconnect in ways that feel right for them.
             </p>
             <p className="font-serif text-2xl text-teal">
-              ThriveWell is about making room for that.
+              Because caring for others shouldn&apos;t mean losing sight of yourself.
             </p>
           </div>
         </div>

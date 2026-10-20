@@ -67,8 +67,8 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/logo.jpg`,
-        type: "image/jpeg",
+        url: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/logo-mark.png`,
+        type: "image/png",
       },
     ],
   },
