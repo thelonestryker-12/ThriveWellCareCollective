@@ -8,6 +8,8 @@ export const siteConfig = {
   brandLine: "Restoring energy, empathy, and capacity for those who care.",
   location: "Serving the Lehigh Valley, Pennsylvania",
   email: "hello@thrivewellcarecollective.com",
+  formspreeEndpoint:
+    process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT || "https://formspree.io/f/xzeegqnd",
   description:
     "ThriveWell Care Collective™ offers restorative massage therapy, guided breathing and pranayama, guided relaxation, mindfulness, and grounding experiences for caregivers, mothers, and anyone who spends their life caring for others in the Lehigh Valley, Pennsylvania.",
   disclaimer:

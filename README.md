@@ -69,4 +69,4 @@ The article body in Markdown. Use ## for section headings.
 
 ## Scheduling inquiries
 
-On the static GitHub Pages site, the schedule form opens a prefilled email to `hello@thrivewellcarecollective.com`. Update that address in `src/lib/site.ts` if needed.
+The schedule form posts to Formspree (`NEXT_PUBLIC_FORMSPREE_ENDPOINT`, default `https://formspree.io/f/xzeegqnd`). If that request fails, the form offers a mailto link to `hello@thrivewellcarecollective.com`.
