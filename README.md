@@ -28,7 +28,7 @@ That writes `out/` and `thrivewell-bluehost.zip`. Extract the zip into `public_h
 The blog hub is `/blog`. It lists every published post as a card, newest first. Each post is one Markdown file in `content/blog/`. The filename is the URL slug (`content/blog/leading-change-caring-for-people.md` is `/blog/leading-change-caring-for-people`). `generateStaticParams` builds the article page from that file, so a new post does not need a new page component. The same posts are included in `/rss.xml`.
 
 1. Add `content/blog/your-slug.md`.
-2. Set `draft: false` when it should appear on the hub.
+2. Set `draft: false` when it should appear on the hub. `image` and `imageAlt` are optional. A post without them keeps the text-only card and article.
 
 ```md
 ---
@@ -36,6 +36,8 @@ title: "From Leading Change to Caring for the People Who Carry It"
 description: "Short excerpt shown on the blog card and in search results."
 date: "2026-10-28"
 author: "Laura Camus, Ed.D., MA, MSW, CCMP"
+image: "/blog/your-image.jpg"
+imageAlt: "Short description of the image"
 tags:
   - change
 draft: false

@@ -10,6 +10,8 @@ export type BlogPost = {
   author: string;
   tags: string[];
   draft: boolean;
+  image?: string;
+  imageAlt?: string;
   content: string;
 };
 
@@ -24,6 +26,8 @@ function parsePost(filename: string): BlogPost | null {
   const filePath = path.join(blogDirectory, filename);
   const raw = fs.readFileSync(filePath, "utf8");
   const { data, content } = matter(raw);
+  const image = typeof data.image === "string" ? data.image.trim() : "";
+  const imageAlt = typeof data.imageAlt === "string" ? data.imageAlt.trim() : "";
 
   return {
     slug,
@@ -33,6 +37,7 @@ function parsePost(filename: string): BlogPost | null {
     author: String(data.author ?? "ThriveWell Care Collective"),
     tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
     draft: Boolean(data.draft),
+    ...(image ? { image, imageAlt: imageAlt || String(data.title ?? slug) } : {}),
     content: content.trim(),
   };
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import { formatPostDate, getAllPosts, getPostBySlug } from "@/lib/blog";
@@ -28,7 +29,18 @@ export async function generateMetadata({
       title: post.title,
       description: post.description,
       publishedTime: post.date,
+      ...(post.image
+        ? { images: [{ url: post.image, alt: post.imageAlt ?? post.title }] }
+        : {}),
     },
+    ...(post.image
+      ? {
+          twitter: {
+            card: "summary_large_image" as const,
+            images: [post.image],
+          },
+        }
+      : {}),
   };
 }
 
@@ -56,6 +68,7 @@ export default async function BlogPostPage({
       name: siteConfig.legalName,
     },
     mainEntityOfPage: `${siteConfig.domain}/blog/${post.slug}`,
+    ...(post.image ? { image: `${siteConfig.domain}${post.image}` } : {}),
   };
 
   return (
@@ -72,6 +85,16 @@ export default async function BlogPostPage({
           {post.title}
         </h1>
         <p className="mt-4 font-serif text-xl italic text-teal">By {post.author}</p>
+        {post.image ? (
+          <Image
+            src={post.image}
+            alt={post.imageAlt ?? post.title}
+            width={1536}
+            height={1024}
+            priority
+            className="mt-8 h-auto w-full rounded-3xl"
+          />
+        ) : null}
         <div className="mt-10 space-y-5 text-base leading-8">
           <ReactMarkdown
             components={{
