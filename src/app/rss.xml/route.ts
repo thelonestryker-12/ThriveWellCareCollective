@@ -22,7 +22,7 @@ export async function GET() {
   <channel>
     <title>${siteConfig.legalName} Blog</title>
     <link>${siteConfig.domain}/blog</link>
-    <description>Notes on rest, restoration, and everyday wellness from ThriveWell Care Collective™.</description>
+    <description>Insights from ThriveWell Care Collective on leadership, caregiving, and restorative wellness for women who care for others.</description>
 ${items}
   </channel>
 </rss>`;

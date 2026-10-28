@@ -7,12 +7,12 @@ import { formatPostDate, getAllPosts } from "@/lib/blog";
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Notes from ThriveWell Care Collective™ on change, caregiving, and restorative wellness.",
+    "Insights from ThriveWell Care Collective on leadership, caregiving, and restorative wellness for women who care for others.",
   alternates: { canonical: "/blog" },
   openGraph: {
     title: "Blog",
     description:
-      "Notes from ThriveWell Care Collective™ on change, caregiving, and restorative wellness.",
+      "Insights from ThriveWell Care Collective on leadership, caregiving, and restorative wellness for women who care for others.",
     url: "/blog",
   },
 };
@@ -25,8 +25,8 @@ export default function BlogPage() {
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
         <SectionHeading
           eyebrow="Blog"
-          title="Space to return to, whenever you need it."
-          intro="Notes on change, caregiving, and restorative wellness."
+          title="Insights for women who care for others."
+          intro="Reflections from ThriveWell on leadership, caregiving, and restorative wellness."
           as="h1"
         />
 
