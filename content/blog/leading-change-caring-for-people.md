@@ -3,7 +3,7 @@ title: "From Leading Change to Caring for the People Who Carry It"
 description: "For much of my career, I have worked in change. I have helped organizations prepare people for new systems, new processes, new ways of working, new expectations, and new realities."
 date: "2026-10-28"
 author: "Laura Camus, Ed.D., MA, MSW, CCMP"
-image: "/blog/leading-change.jpg"
+image: "/blog/leading-change-v2.jpg"
 imageAlt: "Woman at a desk watching a team meeting, blending into a calm spa scene with a candle and towels"
 tags:
   - change
