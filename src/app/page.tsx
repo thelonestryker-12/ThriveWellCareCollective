@@ -77,19 +77,16 @@ export default function HomePage() {
             </div>
           </div>
           <div className="relative rounded-[2.5rem] bg-eucalyptus/70 p-6 sm:p-8">
-            {/* Swap public/hero-placeholder.png when Laura sends the original banner. */}
             <div className="relative overflow-hidden rounded-3xl bg-white/50">
               <Image
-                src="/hero-placeholder.png"
-                alt="Placeholder photo cropped from an annotated screenshot. A banner reads Restoring energy, empathy, and capacity for those who care, beside a massage therapist working on a seated woman's shoulders."
-                width={589}
-                height={295}
-                className="h-auto w-full"
+                src="/hero.jpg"
+                alt="Women relaxing during a ThriveWell chair massage in a calm, plant-filled room"
+                width={1774}
+                height={887}
+                className="h-auto w-full object-cover object-[center_42%]"
                 priority
+                unoptimized
               />
-              <p className="absolute left-3 top-3 rounded-full bg-white/95 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-teal shadow-sm">
-                Placeholder photo
-              </p>
             </div>
             <p className="mt-6 text-center font-serif text-xl text-teal">
               Whether you&apos;re a mother, family caregiver, professional caregiver, or
