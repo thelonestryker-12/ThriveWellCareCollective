@@ -39,26 +39,26 @@ Build the Pages export locally:
 GITHUB_PAGES=true npm run build
 ```
 
-## Add a blog post
+## Add a journal post
 
-1. Create a Markdown file in `content/blog/`.
-2. Use a URL-friendly filename, such as `making-room-for-rest.md`.
-3. Add front matter:
+The journal hub is `/blog`. It lists every published post as a card, newest first. Each post is one Markdown file in `content/blog/`. The filename is the URL slug (`content/blog/leading-change-caring-for-people.md` is `/blog/leading-change-caring-for-people`). `generateStaticParams` builds the article page from that file, so a new post does not need a new page component. The same posts are included in `/rss.xml`. Links stay compatible with the GitHub Pages base path.
+
+1. Add `content/blog/your-slug.md`.
+2. Set `draft: false` when it should appear on the hub.
 
 ```md
 ---
-title: "Making room for rest"
-description: "A short note on pausing when you spend your days caring for others."
-date: "2026-09-15"
-author: "ThriveWell Care Collective"
+title: "From Leading Change to Caring for the People Who Carry It"
+description: "Short excerpt shown on the journal card and in search results."
+date: "2026-10-28"
+author: "Laura Camus, Ed.D., MA, MSW, CCMP"
 tags:
-  - rest
+  - change
 draft: false
 ---
-```
 
-4. Write the article in Markdown below the front matter.
-5. Set `draft: false` when it should appear on `/blog` and in `/rss.xml`.
+The article body in Markdown. Use ## for section headings.
+```
 
 ## Scheduling inquiries
 

@@ -4,9 +4,9 @@ import { SectionHeading } from "@/components/ui";
 import { formatPostDate, getAllPosts } from "@/lib/blog";
 
 export const metadata: Metadata = {
-  title: "Blog",
+  title: "Journal",
   description:
-    "Stories, practices, and wellness notes from ThriveWell Care Collective™. New writing will appear here as it is published.",
+    "Notes from ThriveWell Care Collective™ on change, caregiving, and restorative wellness.",
   alternates: { canonical: "/blog" },
 };
 
@@ -19,7 +19,7 @@ export default function BlogPage() {
         <SectionHeading
           eyebrow="Journal"
           title="Space to return to, whenever you need it."
-          intro="This journal will hold approachable notes on rest, caregiving, and everyday wellness. Content will be added here as it is ready."
+          intro="Notes on change, caregiving, and restorative wellness."
           as="h1"
         />
 
@@ -36,19 +36,22 @@ export default function BlogPage() {
           <ul className="mt-12 space-y-6">
             {posts.map((post) => (
               <li key={post.slug}>
-                <article className="rounded-3xl border border-sage/30 bg-white p-6">
+                <article className="rounded-3xl border border-sage/30 bg-white p-6 sm:p-8">
                   <p className="text-xs uppercase tracking-[0.2em] text-sage">
                     {formatPostDate(post.date)}
                   </p>
-                  <h2 className="mt-2 font-serif text-3xl text-teal">
+                  <h2 className="mt-2 font-serif text-3xl leading-tight text-teal">
                     <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                   </h2>
+                  <p className="mt-3 text-sm font-medium text-charcoal/80">
+                    By {post.author}
+                  </p>
                   <p className="mt-3 text-base leading-8">{post.description}</p>
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="mt-4 inline-block text-sm font-semibold text-teal"
+                    className="mt-4 inline-block text-sm font-semibold text-coral"
                   >
-                    Continue reading
+                    Read
                   </Link>
                 </article>
               </li>

@@ -48,7 +48,7 @@ export default async function BlogPostPage({
     description: post.description,
     datePublished: post.date,
     author: {
-      "@type": "Organization",
+      "@type": "Person",
       name: post.author,
     },
     publisher: {
@@ -71,16 +71,21 @@ export default async function BlogPostPage({
         <h1 className="mt-3 font-serif text-4xl leading-tight text-teal sm:text-5xl">
           {post.title}
         </h1>
-        <p className="mt-4 text-lg leading-8">{post.description}</p>
-        <div className="prose-thrive mt-10 space-y-5 text-base leading-8">
+        <p className="mt-4 font-serif text-xl italic text-teal">By {post.author}</p>
+        <div className="mt-10 space-y-5 text-base leading-8">
           <ReactMarkdown
             components={{
               h2: ({ children }) => (
-                <h2 className="font-serif text-3xl text-teal">{children}</h2>
+                <h2 className="pt-4 font-serif text-3xl leading-tight text-teal">{children}</h2>
               ),
               h3: ({ children }) => (
-                <h3 className="font-serif text-2xl text-teal">{children}</h3>
+                <h3 className="pt-2 font-serif text-2xl text-teal">{children}</h3>
               ),
+              p: ({ children }) => <p className="leading-8">{children}</p>,
+              strong: ({ children }) => (
+                <strong className="font-semibold text-charcoal">{children}</strong>
+              ),
+              em: ({ children }) => <em className="italic">{children}</em>,
               a: ({ href, children }) => (
                 <a href={href} className="text-teal underline underline-offset-4">
                   {children}
@@ -88,6 +93,9 @@ export default async function BlogPostPage({
               ),
               ul: ({ children }) => (
                 <ul className="list-disc space-y-1 pl-5">{children}</ul>
+              ),
+              ol: ({ children }) => (
+                <ol className="list-decimal space-y-1 pl-5">{children}</ol>
               ),
             }}
           >
