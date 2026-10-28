@@ -2,6 +2,7 @@ import {
   HeartIcon,
   LeafDivider,
   LeafSprig,
+  SoftRing,
   SproutIcon,
   SunIcon,
   WavesIcon,
@@ -36,23 +37,15 @@ const steps = [
 
 export function ApproachSection() {
   return (
-    <section className="relative overflow-hidden bg-ivory py-20">
-      <div
-        aria-hidden="true"
+    <section className="relative overflow-x-hidden bg-ivory py-20">
+      <SoftRing
+        color="#829B71"
         className="pointer-events-none absolute right-2 top-8 h-56 w-56 sm:right-6 sm:h-72 sm:w-72"
-        style={{
-          background:
-            "radial-gradient(circle, transparent 58%, rgba(130,155,113,0.34) 68%, rgba(130,155,113,0.1) 80%, transparent 90%)",
-        }}
       />
       <LeafSprig className="pointer-events-none absolute -right-2 top-0 h-56 w-40 text-sage/55 sm:h-72 sm:w-52" />
-      <div
-        aria-hidden="true"
+      <SoftRing
+        color="#F98E77"
         className="pointer-events-none absolute bottom-8 left-4 hidden h-64 w-64 sm:block"
-        style={{
-          background:
-            "radial-gradient(circle, transparent 56%, rgba(249,142,119,0.4) 66%, rgba(249,142,119,0.12) 78%, transparent 90%)",
-        }}
       />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

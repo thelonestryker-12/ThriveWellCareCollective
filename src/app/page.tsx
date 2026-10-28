@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { Metadata } from "next";
-import { LeafSprig } from "@/components/botanicals";
+import { LeafSprig, SoftRing } from "@/components/botanicals";
 import { ApproachSection } from "@/components/approach-section";
 import { HomeServiceCards } from "@/components/home-service-cards";
 import { ButtonLink, SectionHeading } from "@/components/ui";
@@ -41,9 +41,15 @@ const whatWeDo = [
 export default function HomePage() {
   return (
     <>
-      <section className="relative overflow-hidden bg-ivory">
-        <div className="pointer-events-none absolute -left-24 top-8 h-72 w-72 rounded-full border-[18px] border-sage/40" />
-        <div className="pointer-events-none absolute -right-16 bottom-0 h-80 w-80 rounded-full border-[18px] border-coral/35" />
+      <section className="relative overflow-x-hidden bg-ivory">
+        <SoftRing
+          color="#829B71"
+          className="pointer-events-none absolute -left-24 top-8 h-72 w-72"
+        />
+        <SoftRing
+          color="#F98E77"
+          className="pointer-events-none absolute -right-16 bottom-0 h-80 w-80"
+        />
         <LeafSprig className="pointer-events-none absolute -left-8 top-10 h-72 w-52 -rotate-6 text-sage/50" />
         <LeafSprig className="pointer-events-none absolute -right-6 bottom-8 h-64 w-44 rotate-[18deg] text-sage/45" />
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.15fr_0.85fr] lg:px-8 lg:py-24">
