@@ -85,7 +85,6 @@ export default function HomePage() {
                 height={887}
                 className="h-auto w-full object-cover object-[center_42%]"
                 priority
-                unoptimized
               />
             </div>
             <p className="mt-6 text-center font-serif text-xl text-teal">
