@@ -54,7 +54,7 @@ export default function BlogPage() {
                         alt={post.imageAlt ?? post.title}
                         width={1536}
                         height={1024}
-                        className="h-auto w-full"
+                        className="aspect-[16/9] w-full object-cover object-center"
                       />
                     ) : null}
                     <div className="p-6 sm:p-8">
