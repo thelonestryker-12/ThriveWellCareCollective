@@ -19,6 +19,7 @@
 
 # production
 /build
+/thrivewell-bluehost.zip
 
 # misc
 .DS_Store

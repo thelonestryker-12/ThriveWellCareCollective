@@ -2,17 +2,11 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-# Root-domain export for https://thrivewellcarecollective.com.
-# Do not inherit a GitHub Pages base path from the environment.
-unset GITHUB_PAGES
-export NEXT_PUBLIC_BASE_PATH=""
-export NEXT_PUBLIC_SITE_URL="https://thrivewellcarecollective.com"
-
-npm run build
+npx next build
 cp deploy/bluehost/.htaccess out/.htaccess
 
 # Next inserts a noindex meta on the not-found document. Content pages are
-# already index,follow; drop that tag so the Bluehost export does not ship it.
+# already index,follow; drop that tag so the public export does not ship it.
 python3 - << 'PY'
 from pathlib import Path
 import re
@@ -30,4 +24,10 @@ for path in Path("out").rglob("*"):
         print(f"removed not-found noindex from {path}")
 PY
 
-echo "Bluehost export is in out/ (index.html and .htaccess at the top level)."
+rm -f thrivewell-bluehost.zip
+(cd out && zip -qr -X ../thrivewell-bluehost.zip .)
+if [ -d /opt/cursor/artifacts ]; then
+  cp thrivewell-bluehost.zip /opt/cursor/artifacts/thrivewell-bluehost.zip
+fi
+
+echo "Bluehost export is in out/ and thrivewell-bluehost.zip (index.html and .htaccess at the top level)."
