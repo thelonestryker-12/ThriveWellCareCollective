@@ -15,29 +15,36 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## GitHub Pages
 
-GitHub Free requires a **public** repository for Pages. The site remains `noindex` so search engines should not list it.
+GitHub Free requires a **public** repository for Pages. This preview build stays `noindex` so search engines should not list the GitHub Pages URL. The Bluehost export is separate and is indexable.
 
-Redeploy after changes with:
+Redeploy the preview after changes with:
 
 ```bash
 npm run deploy:pages
 ```
 
 
-GitHub Free requires a **public** repository for Pages. The site remains `noindex` so search engines should not list it.
-
-
 The site is deployed as a static export to GitHub Pages from the `main` branch.
 
 - Live URL: https://thelonestryker-12.github.io/ThriveWellCareCollective/
 - Workflow: `.github/workflows/deploy-pages.yml`
-- All pages are set to `noindex` / `nofollow`, and `robots.txt` disallows crawling
+- That build only is `noindex` / `nofollow`, and its `robots.txt` disallows crawling. The root-domain build does not inherit those rules.
 
 Build the Pages export locally:
 
 ```bash
 GITHUB_PAGES=true npm run build
 ```
+
+## Bluehost
+
+The public site is the apex domain on Apache. This export has no `/ThriveWellCareCollective` prefix, uses `https://thrivewellcarecollective.com` for canonical, Open Graph, JSON-LD, and the sitemap, and is indexable.
+
+```bash
+npm run build:bluehost
+```
+
+`out/` is ready to extract into `public_html`: `index.html` and `.htaccess` are at the top. The Apache file forces HTTPS, sends `www` to the apex, serves the trailing-slash `index.html` pages, uses `404.html`, caches `/_next/static` and images, and enables gzip/deflate. `robots.txt` allows crawling and points at `sitemap.xml`.
 
 ## Add a blog post
 

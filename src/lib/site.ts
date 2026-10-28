@@ -1,13 +1,9 @@
-const isGithubPages = process.env.GITHUB_PAGES === "true";
-const githubPagesOrigin = "https://thelonestryker-12.github.io";
-const githubPagesBasePath = "/ThriveWellCareCollective";
+export const isGithubPages = process.env.GITHUB_PAGES === "true";
 
 export const siteConfig = {
   name: "ThriveWell Care Collective",
   legalName: "ThriveWell Care Collective™",
-  domain: isGithubPages
-    ? `${githubPagesOrigin}${githubPagesBasePath}`
-    : "https://thrivewellcarecollective.com",
+  domain: process.env.NEXT_PUBLIC_SITE_URL || "https://thrivewellcarecollective.com",
   tagline: "You spend your days caring for others. Let this be your time.",
   brandLine: "Restoring energy, empathy, and capacity for those who care.",
   location: "Serving the Lehigh Valley, Pennsylvania",
