@@ -26,8 +26,7 @@ export function ScheduleForm({ defaultService }: { defaultService?: string }) {
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const form = event.currentTarget;
-    const formData = new FormData(form);
+    const formData = new FormData(event.currentTarget);
     const gotcha = String(formData.get("_gotcha") ?? "");
     const name = String(formData.get("name") ?? "").trim();
     const email = String(formData.get("email") ?? "").trim();
