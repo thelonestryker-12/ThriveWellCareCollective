@@ -39,9 +39,9 @@ Build the Pages export locally:
 GITHUB_PAGES=true npm run build
 ```
 
-## Add a journal post
+## Add a blog post
 
-The journal hub is `/blog`. It lists every published post as a card, newest first. Each post is one Markdown file in `content/blog/`. The filename is the URL slug (`content/blog/leading-change-caring-for-people.md` is `/blog/leading-change-caring-for-people`). `generateStaticParams` builds the article page from that file, so a new post does not need a new page component. The same posts are included in `/rss.xml`. Links stay compatible with the GitHub Pages base path.
+The blog hub is `/blog`. It lists every published post as a card, newest first. Each post is one Markdown file in `content/blog/`. The filename is the URL slug (`content/blog/leading-change-caring-for-people.md` is `/blog/leading-change-caring-for-people`). `generateStaticParams` builds the article page from that file, so a new post does not need a new page component. The same posts are included in `/rss.xml`. Links stay compatible with the GitHub Pages base path.
 
 1. Add `content/blog/your-slug.md`.
 2. Set `draft: false` when it should appear on the hub.
@@ -49,7 +49,7 @@ The journal hub is `/blog`. It lists every published post as a card, newest firs
 ```md
 ---
 title: "From Leading Change to Caring for the People Who Carry It"
-description: "Short excerpt shown on the journal card and in search results."
+description: "Short excerpt shown on the blog card and in search results."
 date: "2026-10-28"
 author: "Laura Camus, Ed.D., MA, MSW, CCMP"
 tags:

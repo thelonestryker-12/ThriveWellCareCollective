@@ -4,10 +4,16 @@ import { SectionHeading } from "@/components/ui";
 import { formatPostDate, getAllPosts } from "@/lib/blog";
 
 export const metadata: Metadata = {
-  title: "Journal",
+  title: "Blog",
   description:
     "Notes from ThriveWell Care Collective™ on change, caregiving, and restorative wellness.",
   alternates: { canonical: "/blog" },
+  openGraph: {
+    title: "Blog",
+    description:
+      "Notes from ThriveWell Care Collective™ on change, caregiving, and restorative wellness.",
+    url: "/blog",
+  },
 };
 
 export default function BlogPage() {
@@ -17,7 +23,7 @@ export default function BlogPage() {
     <section className="bg-ivory py-20">
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
         <SectionHeading
-          eyebrow="Journal"
+          eyebrow="Blog"
           title="Space to return to, whenever you need it."
           intro="Notes on change, caregiving, and restorative wellness."
           as="h1"
@@ -36,24 +42,26 @@ export default function BlogPage() {
           <ul className="mt-12 space-y-6">
             {posts.map((post) => (
               <li key={post.slug}>
-                <article className="rounded-3xl border border-sage/30 bg-white p-6 sm:p-8">
-                  <p className="text-xs uppercase tracking-[0.2em] text-sage">
-                    {formatPostDate(post.date)}
-                  </p>
-                  <h2 className="mt-2 font-serif text-3xl leading-tight text-teal">
-                    <Link href={`/blog/${post.slug}`}>{post.title}</Link>
-                  </h2>
-                  <p className="mt-3 text-sm font-medium text-charcoal/80">
-                    By {post.author}
-                  </p>
-                  <p className="mt-3 text-base leading-8">{post.description}</p>
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="mt-4 inline-block text-sm font-semibold text-coral"
-                  >
-                    Read
-                  </Link>
-                </article>
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="group block rounded-3xl border border-sage/30 bg-white p-6 transition-shadow hover:border-teal/40 hover:shadow-[0_12px_32px_rgba(21,92,85,0.08)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal sm:p-8"
+                >
+                  <article>
+                    <p className="text-xs uppercase tracking-[0.2em] text-sage">
+                      {formatPostDate(post.date)}
+                    </p>
+                    <h2 className="mt-2 font-serif text-3xl leading-tight text-teal group-hover:underline">
+                      {post.title}
+                    </h2>
+                    <p className="mt-3 text-sm font-medium text-charcoal/80">
+                      By {post.author}
+                    </p>
+                    <p className="mt-3 text-base leading-8">{post.description}</p>
+                    <span className="mt-4 inline-block text-sm font-semibold text-coral">
+                      Read
+                    </span>
+                  </article>
+                </Link>
               </li>
             ))}
           </ul>
