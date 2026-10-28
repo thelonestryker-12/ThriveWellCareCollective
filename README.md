@@ -62,4 +62,4 @@ draft: false
 
 ## Scheduling inquiries
 
-On the static GitHub Pages site, the schedule form opens a prefilled email to `laura@thrivewellcarecollective.com`. Update that address in `src/lib/site.ts` if needed.
+On the static GitHub Pages site, the schedule form opens a prefilled email to `hello@thrivewellcarecollective.com`. Update that address in `src/lib/site.ts` if needed.

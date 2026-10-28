@@ -11,7 +11,7 @@ export const siteConfig = {
   tagline: "You spend your days caring for others. Let this be your time.",
   brandLine: "Restoring energy, empathy, and capacity for those who care.",
   location: "Serving the Lehigh Valley, Pennsylvania",
-  email: "laura@thrivewellcarecollective.com",
+  email: "hello@thrivewellcarecollective.com",
   description:
     "ThriveWell Care Collective™ offers restorative massage therapy, guided breathing and pranayama, guided relaxation, mindfulness, and grounding experiences for caregivers, mothers, and anyone who spends their life caring for others in the Lehigh Valley, Pennsylvania.",
   disclaimer:
