@@ -32,10 +32,32 @@ export default function SchedulePage() {
           <p className="mt-6 text-sm">
             Prefer email?{" "}
             <a
-              className="text-teal underline underline-offset-4"
+              className="text-teal underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal"
               href={`mailto:${siteConfig.email}`}
             >
               {siteConfig.email}
+            </a>
+          </p>
+          <p className="mt-2 text-sm">
+            Prefer to talk?{" "}
+            <a
+              className="text-teal underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal"
+              href={siteConfig.phoneTel}
+            >
+              Call
+            </a>{" "}
+            or{" "}
+            <a
+              className="text-teal underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal"
+              href={siteConfig.phoneSms}
+            >
+              text
+            </a>{" "}
+            <a
+              className="text-teal underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal"
+              href={siteConfig.phoneTel}
+            >
+              {siteConfig.phoneDisplay}
             </a>
           </p>
         </div>

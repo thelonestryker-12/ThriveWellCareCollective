@@ -6,6 +6,9 @@ export const siteConfig = {
   brandLine: "Restoring energy, empathy, and capacity for those who care.",
   location: "Serving the Lehigh Valley, Pennsylvania",
   email: "hello@thrivewellcarecollective.com",
+  phoneDisplay: "(835) 285-1304",
+  phoneTel: "tel:+18352851304",
+  phoneSms: "sms:+18352851304",
   formspreeEndpoint:
     process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT || "https://formspree.io/f/xzeegqnd",
   description:

@@ -16,6 +16,7 @@ export function JsonLd() {
         name: siteConfig.legalName,
         url: siteConfig.domain,
         email: siteConfig.email,
+        telephone: siteConfig.phoneTel.replace(/^tel:/, ""),
         description: siteConfig.description,
         image: `${siteConfig.domain}/logo-full.png`,
         areaServed: {

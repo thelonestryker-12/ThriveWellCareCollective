@@ -66,6 +66,7 @@ export default async function BlogPostPage({
     publisher: {
       "@type": "Organization",
       name: siteConfig.legalName,
+      telephone: siteConfig.phoneTel.replace(/^tel:/, ""),
     },
     mainEntityOfPage: `${siteConfig.domain}/blog/${post.slug}`,
     ...(post.image ? { image: `${siteConfig.domain}${post.image}` } : {}),

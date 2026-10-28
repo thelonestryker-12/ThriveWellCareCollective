@@ -194,7 +194,7 @@ export function ScheduleForm({ defaultService }: { defaultService?: string }) {
       <button
         type="submit"
         disabled={pending}
-        className="inline-flex rounded-full bg-coral px-6 py-3 text-sm font-semibold text-charcoal disabled:opacity-70"
+        className="inline-flex scroll-mb-24 rounded-full bg-coral px-6 py-3 text-sm font-semibold text-charcoal focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal disabled:opacity-70 sm:scroll-mb-0"
       >
         {pending ? "Sending..." : "Request a Time"}
       </button>

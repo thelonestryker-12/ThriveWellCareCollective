@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Montserrat } from "next/font/google";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { JsonLd } from "@/components/json-ld";
+import { MobileContactBar } from "@/components/mobile-contact-bar";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";
 
@@ -75,13 +76,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${montserrat.variable} ${cormorant.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-ivory font-sans text-charcoal">
+      <body className="flex min-h-full flex-col bg-ivory pb-[calc(5.25rem+env(safe-area-inset-bottom))] font-sans text-charcoal sm:pb-0">
         <JsonLd />
         <Header />
         <main id="main-content" className="flex-1">
           {children}
         </main>
         <Footer />
+        <MobileContactBar />
       </body>
     </html>
   );

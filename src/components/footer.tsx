@@ -13,10 +13,35 @@ export function Footer() {
           <p className="mt-4 text-sm text-eucalyptus">{siteConfig.location}</p>
           <a
             href={`mailto:${siteConfig.email}`}
-            className="mt-2 inline-block text-sm text-white underline decoration-coral/80 underline-offset-4"
+            className="mt-2 inline-block text-sm text-white underline decoration-coral/80 underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
           >
             {siteConfig.email}
           </a>
+          <p className="mt-3 text-sm text-white">
+            <a
+              href={siteConfig.phoneTel}
+              className="underline decoration-coral/80 underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            >
+              {siteConfig.phoneDisplay}
+            </a>
+          </p>
+          <p className="mt-1 text-sm">
+            <a
+              href={siteConfig.phoneTel}
+              className="text-white/90 underline decoration-coral/80 underline-offset-4 hover:text-coral focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            >
+              Call
+            </a>
+            <span className="px-2 text-white/50" aria-hidden="true">
+              ·
+            </span>
+            <a
+              href={siteConfig.phoneSms}
+              className="text-white/90 underline decoration-coral/80 underline-offset-4 hover:text-coral focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            >
+              Text
+            </a>
+          </p>
         </div>
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.24em] text-eucalyptus">

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import { PhoneIcon } from "@/components/contact-icons";
 import { navLinks, siteConfig } from "@/lib/site";
 import { ButtonLink } from "@/components/ui";
 
@@ -51,7 +52,15 @@ export function Header() {
           })}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <a
+            href={siteConfig.phoneTel}
+            className="hidden items-center justify-center gap-2 whitespace-nowrap rounded-full border border-sage/70 bg-transparent px-5 py-3 text-sm font-semibold tracking-wide text-teal transition-colors hover:bg-eucalyptus/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal sm:inline-flex"
+            aria-label={`Call or text ThriveWell at ${siteConfig.phoneDisplay}`}
+          >
+            <PhoneIcon />
+            Call or Text
+          </a>
           <div className="hidden sm:block">
             <ButtonLink href="/schedule">Schedule</ButtonLink>
           </div>
@@ -73,7 +82,7 @@ export function Header() {
       </div>
 
       {open ? (
-        <div className="border-t border-sage/20 bg-ivory px-4 py-4 lg:hidden">
+        <div className="border-t border-sage/20 bg-ivory px-4 pt-4 pb-24 sm:pb-4 lg:hidden">
           <nav className="flex flex-col gap-3" aria-label="Mobile">
             {navLinks.map((link) => (
               <Link
