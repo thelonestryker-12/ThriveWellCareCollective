@@ -24,6 +24,23 @@ export type BlogPost = {
 
 const blogDirectory = path.join(process.cwd(), "content/blog");
 
+export function getBuildDate() {
+  const override = process.env.BUILD_DATE?.trim();
+  if (override && /^\d{4}-\d{2}-\d{2}$/.test(override)) return override;
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/New_York",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(new Date());
+}
+
+function isPublishedOnBuildDate(post: BlogPost) {
+  const day = post.date.slice(0, 10);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(day)) return true;
+  return day <= getBuildDate();
+}
+
 function parsePost(filename: string): BlogPost | null {
   if (!filename.endsWith(".md") && !filename.endsWith(".mdx")) {
     return null;
@@ -76,6 +93,7 @@ export function getAllPosts(includeDrafts = false): BlogPost[] {
     .filter((post): post is BlogPost => {
       if (!post) return false;
       if (!includeDrafts && post.draft) return false;
+      if (!isPublishedOnBuildDate(post)) return false;
       return true;
     })
     .sort((a, b) => {
@@ -105,7 +123,9 @@ export function getPostBySlug(slug: string): BlogPost | null {
       : null;
 
   if (!filename) return null;
-  return parsePost(filename);
+  const post = parsePost(filename);
+  if (!post || !isPublishedOnBuildDate(post)) return null;
+  return post;
 }
 
 export function formatPostDate(date: string) {

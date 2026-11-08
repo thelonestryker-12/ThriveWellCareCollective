@@ -29,6 +29,7 @@ The blog hub is `/blog`. It lists every published post as a card, newest first. 
 
 1. Add `content/blog/your-slug.md`.
 2. Set `draft: false` when it should appear on the hub. `image` and `imageAlt` are optional. A post without them keeps the text-only card and article.
+3. Set `date` to the day it should go live (`YYYY-MM-DD`). The Bluehost build uses America/New_York. A post dated after that build day is omitted: no page, hub card, category listing, sitemap URL, or RSS item. Preview a later day with `BUILD_DATE=YYYY-MM-DD npm run build`.
 
 ```md
 ---

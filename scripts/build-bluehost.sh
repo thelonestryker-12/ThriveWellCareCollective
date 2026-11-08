@@ -2,6 +2,12 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
+if [ -n "${BUILD_DATE:-}" ]; then
+  echo "Including blog posts dated on or before ${BUILD_DATE} (BUILD_DATE)."
+else
+  echo "Including blog posts dated on or before $(TZ=America/New_York date +%F) (America/New_York)."
+fi
+
 npx next build
 cp deploy/bluehost/.htaccess out/.htaccess
 
