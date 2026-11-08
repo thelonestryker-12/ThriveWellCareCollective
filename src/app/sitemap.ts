@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getAllPosts } from "@/lib/blog";
+import { getAllPosts, getCategoriesWithPosts } from "@/lib/blog";
 import { siteConfig } from "@/lib/site";
 
 export const dynamic = "force-static";
@@ -22,6 +22,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...posts.map((post) => ({
       path: `/blog/${post.slug}/`,
       lastModified: post.date,
+    })),
+    ...getCategoriesWithPosts().map((category) => ({
+      path: `/blog/category/${category.slug}/`,
+      lastModified: undefined as string | undefined,
     })),
   ];
 

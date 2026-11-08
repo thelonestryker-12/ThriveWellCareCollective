@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import { formatPostDate, getAllPosts, getPostBySlug } from "@/lib/blog";
+import { getCategoryByName } from "@/lib/categories";
 import { siteConfig } from "@/lib/site";
 
 export async function generateStaticParams() {
@@ -52,6 +54,7 @@ export default async function BlogPostPage({
   const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post || post.draft) notFound();
+  const category = post.category ? getCategoryByName(post.category) : null;
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -59,6 +62,7 @@ export default async function BlogPostPage({
     headline: post.title,
     description: post.description,
     datePublished: post.date,
+    ...(category ? { articleSection: category.name } : {}),
     author: {
       "@type": "Person",
       name: post.author,
@@ -79,22 +83,41 @@ export default async function BlogPostPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
-        <p className="text-xs uppercase tracking-[0.2em] text-sage">
+        {category ? (
+          <p>
+            <Link
+              href={`/blog/category/${category.slug}`}
+              className="text-xs font-semibold uppercase tracking-[0.16em] text-sage underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal"
+            >
+              {category.name}
+            </Link>
+          </p>
+        ) : null}
+        <p className="mt-3 text-xs uppercase tracking-[0.2em] text-sage">
           {formatPostDate(post.date)}
         </p>
         <h1 className="mt-3 font-serif text-4xl leading-tight text-teal sm:text-5xl">
           {post.title}
         </h1>
-        <p className="mt-4 font-serif text-xl italic text-teal">By {post.author}</p>
+        <p className="mt-4 font-serif text-xl italic text-teal">
+          {post.byline ?? `By ${post.author}`}
+        </p>
         {post.image ? (
-          <Image
-            src={post.image}
-            alt={post.imageAlt ?? post.title}
-            width={1536}
-            height={1024}
-            priority
-            className="mt-8 h-auto w-full rounded-3xl"
-          />
+          <figure className="mt-8">
+            <Image
+              src={post.image}
+              alt={post.imageAlt ?? post.title}
+              width={post.imageWidth ?? 1536}
+              height={post.imageHeight ?? 1024}
+              priority
+              className="h-auto w-full rounded-3xl"
+            />
+            {post.imageCaption ? (
+              <figcaption className="mt-3 text-center font-serif text-lg italic text-teal">
+                {post.imageCaption}
+              </figcaption>
+            ) : null}
+          </figure>
         ) : null}
         <div className="mt-10 space-y-5 text-base leading-8">
           <ReactMarkdown

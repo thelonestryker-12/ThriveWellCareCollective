@@ -1,17 +1,24 @@
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
+import { blogCategories } from "@/lib/categories";
 
 export type BlogPost = {
   slug: string;
   title: string;
   description: string;
   date: string;
+  order: number;
   author: string;
+  byline?: string;
+  category?: string;
   tags: string[];
   draft: boolean;
   image?: string;
   imageAlt?: string;
+  imageCaption?: string;
+  imageWidth?: number;
+  imageHeight?: number;
   content: string;
 };
 
@@ -28,16 +35,32 @@ function parsePost(filename: string): BlogPost | null {
   const { data, content } = matter(raw);
   const image = typeof data.image === "string" ? data.image.trim() : "";
   const imageAlt = typeof data.imageAlt === "string" ? data.imageAlt.trim() : "";
+  const imageCaption = typeof data.imageCaption === "string" ? data.imageCaption.trim() : "";
+  const byline = typeof data.byline === "string" ? data.byline.trim() : "";
+  const category = typeof data.category === "string" ? data.category.trim() : "";
+  const imageWidth = Number(data.imageWidth);
+  const imageHeight = Number(data.imageHeight);
 
   return {
     slug,
     title: String(data.title ?? slug),
     description: String(data.description ?? ""),
     date: String(data.date ?? ""),
+    order: Number.isFinite(Number(data.order)) ? Number(data.order) : 999,
     author: String(data.author ?? "ThriveWell Care Collective"),
+    ...(byline ? { byline } : {}),
+    ...(category ? { category } : {}),
     tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
     draft: Boolean(data.draft),
-    ...(image ? { image, imageAlt: imageAlt || String(data.title ?? slug) } : {}),
+    ...(image
+      ? {
+          image,
+          imageAlt: imageAlt || String(data.title ?? slug),
+          ...(imageCaption ? { imageCaption } : {}),
+          ...(Number.isFinite(imageWidth) && imageWidth > 0 ? { imageWidth } : {}),
+          ...(Number.isFinite(imageHeight) && imageHeight > 0 ? { imageHeight } : {}),
+        }
+      : {}),
     content: content.trim(),
   };
 }
@@ -55,7 +78,21 @@ export function getAllPosts(includeDrafts = false): BlogPost[] {
       if (!includeDrafts && post.draft) return false;
       return true;
     })
-    .sort((a, b) => (a.date < b.date ? 1 : -1));
+    .sort((a, b) => {
+      if (a.date !== b.date) return a.date < b.date ? 1 : -1;
+      return a.order - b.order;
+    });
+}
+
+export function getPostsByCategory(categoryName: string) {
+  return getAllPosts().filter((post) => post.category === categoryName);
+}
+
+export function getCategoriesWithPosts() {
+  const posts = getAllPosts();
+  return blogCategories.filter((category) =>
+    posts.some((post) => post.category === category.name),
+  );
 }
 
 export function getPostBySlug(slug: string): BlogPost | null {

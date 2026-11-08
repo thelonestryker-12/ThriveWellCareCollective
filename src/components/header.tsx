@@ -32,7 +32,7 @@ export function Header() {
           />
         </Link>
 
-        <nav className="hidden items-center gap-4 lg:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-x-3 gap-y-1 lg:flex xl:gap-x-4" aria-label="Primary">
           {navLinks.map((link) => {
             const active =
               link.href === "/"
@@ -42,7 +42,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-[13px] font-medium tracking-wide transition-colors ${
+                className={`whitespace-nowrap text-[12px] font-medium tracking-wide transition-colors xl:text-[13px] ${
                   active ? "text-teal" : "text-charcoal hover:text-teal"
                 }`}
               >

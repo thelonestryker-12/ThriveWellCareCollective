@@ -24,5 +24,5 @@ export const navLinks = [
   { href: "/membership", label: "Membership" },
   { href: "/caregiverwell", label: "CaregiverWell" },
   { href: "/motherwell", label: "MotherWell" },
-  { href: "/blog", label: "Blog" },
+  { href: "/blog", label: "The ThriveWell Journal" },
 ] as const;

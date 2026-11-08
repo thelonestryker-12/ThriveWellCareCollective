@@ -20,7 +20,7 @@ export async function GET() {
   const xml = `<?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0">
   <channel>
-    <title>${siteConfig.legalName} Blog</title>
+    <title>The ThriveWell Journal</title>
     <link>${siteConfig.domain}/blog</link>
     <description>Insights from ThriveWell Care Collective on leadership, caregiving, and restorative wellness for women who care for others.</description>
 ${items}
