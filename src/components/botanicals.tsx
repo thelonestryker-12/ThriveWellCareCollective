@@ -1,5 +1,3 @@
-import { useId } from "react";
-
 type SvgProps = {
   className?: string;
 };
@@ -11,8 +9,6 @@ export function SoftRing({
   className?: string;
   color: string;
 }) {
-  const id = `soft-ring-${useId().replace(/:/g, "")}`;
-
   return (
     <svg
       viewBox="0 0 200 200"
@@ -20,16 +16,16 @@ export function SoftRing({
       aria-hidden="true"
       focusable="false"
     >
-      <defs>
-        <radialGradient id={id} cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor={color} stopOpacity="0" />
-          <stop offset="62%" stopColor={color} stopOpacity="0" />
-          <stop offset="74%" stopColor={color} stopOpacity="0.5" />
-          <stop offset="86%" stopColor={color} stopOpacity="0.16" />
-          <stop offset="100%" stopColor={color} stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <circle cx="100" cy="100" r="92" fill={`url(#${id})`} />
+      <circle
+        cx="100"
+        cy="100"
+        r="92"
+        fill="none"
+        stroke={color}
+        strokeWidth="1.75"
+        vectorEffect="non-scaling-stroke"
+        opacity="0.55"
+      />
     </svg>
   );
 }
