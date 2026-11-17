@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { BlogPostList, CategoryChips } from "@/components/blog-index";
 import { SectionHeading } from "@/components/ui";
 import { getAllPosts } from "@/lib/blog";
+import { shareImage } from "@/lib/site";
 
 const journalTitle = "The ThriveWell Journal";
 const journalDescription =
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     title: journalTitle,
     description: journalDescription,
     url: "/blog",
+    images: [shareImage],
   },
 };
 

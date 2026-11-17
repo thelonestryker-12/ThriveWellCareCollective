@@ -4,7 +4,7 @@ import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { JsonLd } from "@/components/json-ld";
 import { MobileContactBar } from "@/components/mobile-contact-bar";
-import { isIndexableSite, siteConfig } from "@/lib/site";
+import { isIndexableSite, shareImage, siteConfig } from "@/lib/site";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -43,11 +43,13 @@ export const metadata: Metadata = {
     siteName: siteConfig.legalName,
     title: siteConfig.legalName,
     description: siteConfig.description,
+    images: [shareImage],
   },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.legalName,
     description: siteConfig.description,
+    images: [shareImage],
   },
   robots: isIndexableSite
     ? { index: true, follow: true }

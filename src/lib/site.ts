@@ -20,6 +20,19 @@ export const siteConfig = {
 export const siteTarget = process.env.SITE_TARGET === "ghpages" ? "ghpages" : "bluehost";
 export const isIndexableSite = siteTarget !== "ghpages";
 
+const shareImagePath = "/og-hero-20261117.jpg";
+
+export const shareImage = {
+  url:
+    siteTarget === "ghpages"
+      ? `https://thelonestryker-12.github.io/ThriveWellCareCollective${shareImagePath}`
+      : shareImagePath,
+  width: 1200,
+  height: 630,
+  alt: `${siteConfig.legalName}. ${siteConfig.tagline} ${siteConfig.location}`,
+  type: "image/jpeg" as const,
+};
+
 export const serviceLinks = [
   { href: "/membership", label: "Membership" },
   { href: "/caregiverwell", label: "CaregiverWell" },

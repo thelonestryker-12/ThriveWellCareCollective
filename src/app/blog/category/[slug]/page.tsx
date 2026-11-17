@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { BlogPostList, CategoryChips } from "@/components/blog-index";
 import { getCategoryBySlug } from "@/lib/categories";
 import { getCategoriesWithPosts, getPostsByCategory } from "@/lib/blog";
+import { shareImage } from "@/lib/site";
 
 export function generateStaticParams() {
   return getCategoriesWithPosts().map((category) => ({ slug: category.slug }));
@@ -28,9 +29,9 @@ export async function generateMetadata({
       title: category.name,
       description: category.description,
       url: `/blog/category/${category.slug}`,
-      ...(category.image
-        ? { images: [{ url: category.image, alt: category.imageAlt ?? category.name }] }
-        : {}),
+      images: category.image
+        ? [{ url: category.image, alt: category.imageAlt ?? category.name }]
+        : [shareImage],
     },
   };
 }
