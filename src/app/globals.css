@@ -79,4 +79,13 @@ h3 {
   .process-step:nth-child(5) {
     animation-delay: 320ms;
   }
+
+  .level-card {
+    transition: transform 180ms ease, box-shadow 180ms ease;
+  }
+
+  .level-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px rgba(31, 45, 42, 0.08);
+  }
 }

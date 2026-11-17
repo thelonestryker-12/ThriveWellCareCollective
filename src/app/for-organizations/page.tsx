@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SoftRing } from "@/components/botanicals";
+import { PartnershipLevels } from "@/components/partnership-levels";
 import { ProcessTimeline } from "@/components/process-timeline";
 import { ButtonLink } from "@/components/ui";
 
@@ -9,39 +10,6 @@ export const metadata: Metadata = {
     "ThriveWell partners with organizations to listen first, then design practical workforce well-being experiences, programs, and consulting support.",
   alternates: { canonical: "/for-organizations" },
 };
-
-const levels = [
-  {
-    title: "Level 1: Employee Wellness Experiences",
-    intro:
-      "Creating opportunities to pause, restore, and reconnect. Targeted offerings introduce accessible practices for recognizing stress, restoring energy, and building awareness.",
-    items: [
-      "Interactive stress awareness and self-care workshops",
-      "Guided relaxation, breath awareness, and grounding",
-      "Mindfulness and reflective journaling experiences",
-      "Workplace chair massage and relaxation sessions",
-      "Caregiver wellness and resilience education",
-      "Leadership and team wellness experiences",
-    ],
-    note: "Available in person, virtually, or in a blended format as appropriate. Best suited for employee appreciation, development days, conferences, and introductory wellness initiatives.",
-  },
-  {
-    title: "Level 2: Structured Workforce Wellness Programs",
-    intro:
-      "Moving from individual experiences to sustained learning and support. ThriveWell develops coordinated programs connecting employee needs with organizational priorities.",
-    items: [
-      "Employee wellness discovery and feedback",
-      "Multi-session educational workshops",
-      "Caregiver stress and burnout prevention education",
-      "Leadership awareness and supportive workplace practices",
-      "Stress management and self-regulation strategies",
-      "Reflection, boundaries, and sustainable self-care",
-      "Participation and learning evaluations",
-      "Recommendations for continued support",
-    ],
-    note: "These offerings complement existing employee assistance, HR, occupational health, and professional development initiatives. Best suited for teams, departments, or organizations seeking coordinated wellness programming.",
-  },
-];
 
 const audiences = [
   "County and municipal government agencies",
@@ -81,62 +49,14 @@ export default function ForOrganizationsPage() {
         </div>
       </section>
 
-      <section className="bg-sand py-16">
-        <div className="mx-auto max-w-4xl space-y-4 px-4 sm:px-6">
+      <section id="levels" className="relative overflow-hidden bg-sand py-20">
+        <SoftRing
+          color="#F98E77"
+          className="pointer-events-none absolute -left-16 top-8 h-56 w-56 opacity-50"
+        />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="font-serif text-4xl text-teal">Three ways to work together</h2>
-          {levels.map((level) => (
-            <details key={level.title} className="rounded-3xl bg-white px-5 py-4" open>
-              <summary className="cursor-pointer font-serif text-2xl text-teal">{level.title}</summary>
-              <p className="mt-3 text-base leading-8">{level.intro}</p>
-              <ul className="mt-3 list-disc space-y-1 pl-5 text-base leading-8">
-                {level.items.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-              <p className="mt-3 text-base leading-8">{level.note}</p>
-            </details>
-          ))}
-          <details className="rounded-3xl bg-white px-5 py-4">
-            <summary className="cursor-pointer font-serif text-2xl text-teal">
-              Level 3: Strategic Workforce Well-Being Partnerships
-            </summary>
-            <p className="mt-3 text-base leading-8">
-              Understanding organizational needs. Designing informed solutions. Supporting sustainable change. These engagements consider workforce experiences alongside communication, workload, expectations, resources, leadership practices, and culture.
-            </p>
-            <h3 className="mt-4 font-serif text-2xl text-teal">Organizational Discovery & Needs Assessment</h3>
-            <ul className="mt-2 list-disc space-y-1 pl-5 leading-8">
-              <li>Leadership and stakeholder interviews</li>
-              <li>Confidential employee surveys and listening sessions</li>
-              <li>Review of existing wellness resources</li>
-              <li>Identification of workforce needs and access barriers</li>
-              <li>Organizational readiness and priority assessment</li>
-              <li>Analysis of themes, gaps, and opportunities</li>
-            </ul>
-            <h3 className="mt-4 font-serif text-2xl text-teal">Strategic Planning & Program Design</h3>
-            <ul className="mt-2 list-disc space-y-1 pl-5 leading-8">
-              <li>Workforce well-being objectives and priorities</li>
-              <li>Customized educational and wellness program design</li>
-              <li>Leadership and employee engagement recommendations</li>
-              <li>Implementation plans and resource considerations</li>
-              <li>Alignment with organizational priorities</li>
-            </ul>
-            <h3 className="mt-4 font-serif text-2xl text-teal">Implementation & Change Support</h3>
-            <ul className="mt-2 list-disc space-y-1 pl-5 leading-8">
-              <li>Stakeholder engagement and communication plans</li>
-              <li>Workshops, learning opportunities, and facilitated experiences</li>
-              <li>Support for introducing and adopting new initiatives</li>
-              <li>Ongoing feedback and program refinement</li>
-            </ul>
-            <h3 className="mt-4 font-serif text-2xl text-teal">Evaluation & Continuous Improvement</h3>
-            <ul className="mt-2 list-disc space-y-1 pl-5 leading-8">
-              <li>Participation and engagement measures</li>
-              <li>Employee feedback and aggregate reporting</li>
-              <li>Effectiveness evaluation and recommendations for what to continue</li>
-            </ul>
-            <p className="mt-3 text-base leading-8">
-              Best suited for public-sector agencies, healthcare systems, educational institutions, community organizations, and employers seeking comprehensive, data-informed support. Scope is determined after discovery. Formal needs assessments and consulting projects are separately scoped.
-            </p>
-          </details>
+          <PartnershipLevels />
         </div>
       </section>
 
