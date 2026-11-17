@@ -2,6 +2,13 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
+export SITE_TARGET="${SITE_TARGET:-bluehost}"
+if [ "$SITE_TARGET" != "bluehost" ] && [ "$SITE_TARGET" != "ghpages" ]; then
+  echo "SITE_TARGET must be bluehost or ghpages" >&2
+  exit 1
+fi
+echo "Site target: ${SITE_TARGET}"
+
 if [ -n "${BUILD_DATE:-}" ]; then
   echo "Including blog posts dated on or before ${BUILD_DATE} (BUILD_DATE)."
 else
@@ -39,8 +46,13 @@ for md in Path("content/blog").glob("*.md"):
         print(f"omitted future image {target}")
 PY
 
-# Next inserts a noindex meta on the not-found document. Content pages are
-# already index,follow; drop that tag so the public export does not ship it.
+if [ "$SITE_TARGET" = "ghpages" ]; then
+  touch out/.nojekyll
+fi
+
+# Next inserts a noindex meta on the not-found document. The live Bluehost
+# export must not ship it. A GitHub Pages export keeps noindex on every page.
+if [ "$SITE_TARGET" = "bluehost" ]; then
 python3 - << 'PY'
 from pathlib import Path
 import re
@@ -57,11 +69,17 @@ for path in Path("out").rglob("*"):
         path.write_text(updated)
         print(f"removed not-found noindex from {path}")
 PY
-
-rm -f thrivewell-bluehost.zip
-(cd out && zip -qr -X ../thrivewell-bluehost.zip .)
-if [ -d /opt/cursor/artifacts ]; then
-  cp thrivewell-bluehost.zip /opt/cursor/artifacts/thrivewell-bluehost.zip
 fi
 
-echo "Bluehost export is in out/ and thrivewell-bluehost.zip (index.html and .htaccess at the top level)."
+python3 scripts/check-indexability.py "$SITE_TARGET" out
+
+if [ "$SITE_TARGET" = "bluehost" ]; then
+  rm -f thrivewell-bluehost.zip
+  (cd out && zip -qr -X ../thrivewell-bluehost.zip .)
+  if [ -d /opt/cursor/artifacts ]; then
+    cp thrivewell-bluehost.zip /opt/cursor/artifacts/thrivewell-bluehost.zip
+  fi
+  echo "Bluehost export is in out/ and thrivewell-bluehost.zip (index.html and .htaccess at the top level)."
+else
+  echo "GitHub Pages export is in out/ with noindex on every HTML page. The Bluehost zip was not replaced."
+fi

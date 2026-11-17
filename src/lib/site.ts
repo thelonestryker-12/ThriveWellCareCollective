@@ -17,6 +17,9 @@ export const siteConfig = {
     "ThriveWell Care Collective™ provides educational, restorative, and general wellness services. Massage therapy services are provided exclusively by licensed massage therapists. ThriveWell services are intended for general wellness and are not intended to diagnose, treat, cure, or prevent medical or mental health conditions.",
 } as const;
 
+export const siteTarget = process.env.SITE_TARGET === "ghpages" ? "ghpages" : "bluehost";
+export const isIndexableSite = siteTarget !== "ghpages";
+
 export const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },

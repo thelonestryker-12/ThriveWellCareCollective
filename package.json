@@ -7,7 +7,10 @@
     "build": "bash scripts/build-bluehost.sh",
     "start": "next start",
     "lint": "eslint",
-    "build:bluehost": "bash scripts/build-bluehost.sh"
+    "build:bluehost": "SITE_TARGET=bluehost bash scripts/build-bluehost.sh",
+    "build:ghpages": "SITE_TARGET=ghpages bash scripts/build-bluehost.sh",
+    "deploy:pages": "bash scripts/deploy-pages.sh",
+    "check:indexability": "python3 scripts/check-indexability.py"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",

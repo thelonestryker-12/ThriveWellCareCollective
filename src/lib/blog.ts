@@ -19,6 +19,7 @@ export type BlogPost = {
   imageCaption?: string;
   imageWidth?: number;
   imageHeight?: number;
+  inlineImages?: boolean;
   content: string;
 };
 
@@ -76,6 +77,7 @@ function parsePost(filename: string): BlogPost | null {
           ...(imageCaption ? { imageCaption } : {}),
           ...(Number.isFinite(imageWidth) && imageWidth > 0 ? { imageWidth } : {}),
           ...(Number.isFinite(imageHeight) && imageHeight > 0 ? { imageHeight } : {}),
+          ...(data.inlineImages ? { inlineImages: true } : {}),
         }
       : {}),
     content: content.trim(),

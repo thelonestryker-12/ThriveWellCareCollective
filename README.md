@@ -23,6 +23,8 @@ npm run build:bluehost
 
 That writes `out/` and `thrivewell-bluehost.zip`. Extract the zip into `public_html` so `index.html` and `.htaccess` land in that folder. The Apache file forces HTTPS, sends `www` to the apex, serves the trailing-slash `index.html` pages, uses `404.html`, caches `/_next/static` and images, and enables gzip/deflate. `robots.txt` allows crawling and points at `sitemap.xml`.
 
+`SITE_TARGET` controls indexing. It defaults to `bluehost`: every page is indexable, canonical URLs use `https://thrivewellcarecollective.com`, and `robots.txt` allows crawling and lists the sitemap. `SITE_TARGET=ghpages` is only for the GitHub Pages preview. That build adds `<meta name="robots" content="noindex, nofollow">` on every HTML page, leaves canonicals on the live domain, allows crawling in `robots.txt` so crawlers can see the noindex, and does not link a sitemap. `scripts/deploy-pages.sh` forces `SITE_TARGET=ghpages`, so a Pages deploy cannot be indexable. `scripts/check-indexability.py` fails the build if a Bluehost export contains noindex, or if a Pages export has an HTML page without it.
+
 ## Add a blog post
 
 The blog hub is `/blog`. It lists every published post as a card, newest first. Each post is one Markdown file in `content/blog/`. The filename is the URL slug (`content/blog/leading-change-caring-for-people.md` is `/blog/leading-change-caring-for-people`). `generateStaticParams` builds the article page from that file, so a new post does not need a new page component. The same posts are included in `/rss.xml`.

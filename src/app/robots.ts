@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { siteConfig } from "@/lib/site";
+import { isIndexableSite, siteConfig } from "@/lib/site";
 
 export const dynamic = "force-static";
 
@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: `${siteConfig.domain}/sitemap.xml`,
+    ...(isIndexableSite ? { sitemap: `${siteConfig.domain}/sitemap.xml` } : {}),
   };
 }

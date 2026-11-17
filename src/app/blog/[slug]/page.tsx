@@ -99,10 +99,10 @@ export default async function BlogPostPage({
         <h1 className="mt-3 font-serif text-4xl leading-tight text-teal sm:text-5xl">
           {post.title}
         </h1>
-        <p className="mt-4 font-serif text-xl italic text-teal">
+        <p className="mt-4 whitespace-pre-line font-serif text-xl italic text-teal">
           {post.byline ?? `By ${post.author}`}
         </p>
-        {post.image ? (
+        {post.image && !post.inlineImages ? (
           <figure className="mt-8">
             <Image
               src={post.image}
@@ -138,6 +138,11 @@ export default async function BlogPostPage({
                   {children}
                 </a>
               ),
+              img: ({ src, alt }) =>
+                src ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={src} alt={alt ?? ""} className="my-6 h-auto w-full rounded-3xl" />
+                ) : null,
               ul: ({ children }) => (
                 <ul className="list-disc space-y-1 pl-5">{children}</ul>
               ),
