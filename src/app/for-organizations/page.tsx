@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { SoftRing } from "@/components/botanicals";
+import { ProcessTimeline } from "@/components/process-timeline";
 import { ButtonLink } from "@/components/ui";
 
 export const metadata: Metadata = {
@@ -39,14 +41,6 @@ const levels = [
     ],
     note: "These offerings complement existing employee assistance, HR, occupational health, and professional development initiatives. Best suited for teams, departments, or organizations seeking coordinated wellness programming.",
   },
-];
-
-const stages = [
-  ["Discover", "Understand priorities, resources, workforce characteristics, and desired outcomes."],
-  ["Assess", "Gather and analyze relevant information through surveys, interviews, listening sessions, or organizational review."],
-  ["Design", "Collaborate on priorities, objectives, programs, and improvements."],
-  ["Implement", "Support education, wellness programming, stakeholder communication, and change activities."],
-  ["Evaluate", "Review participation, feedback, learning, and agreed metrics to guide improvement."],
 ];
 
 const audiences = [
@@ -174,21 +168,22 @@ export default function ForOrganizationsPage() {
         </div>
       </section>
 
-      <section className="bg-eucalyptus/40 py-16">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6">
+      <section id="process" className="relative overflow-hidden bg-eucalyptus/40 py-20">
+        <SoftRing
+          color="#829B71"
+          className="pointer-events-none absolute -right-10 top-8 h-56 w-56 opacity-70 sm:h-72 sm:w-72"
+        />
+        <div className="relative mx-auto max-w-4xl px-4 sm:px-6">
           <h2 className="font-serif text-4xl text-teal">Listen Before We Design</h2>
           <p className="mt-4 text-base leading-8">
             We begin by exploring employee challenges, existing supports, employees’ stated needs, workplace conditions, differences across shifts and locations, and the outcomes that would make an initiative useful. We use these insights to recommend support, establish objectives, and design a practical approach. Employee input is voluntary, treated confidentially as appropriate, and reported in aggregate when suitable.
           </p>
-          <ol className="mt-8 space-y-3">
-            {stages.map(([name, body], index) => (
-              <li key={name} className="rounded-3xl bg-white px-5 py-4">
-                <p className="font-serif text-2xl text-teal">{index + 1}. {name}</p>
-                <p className="mt-2 text-base leading-8">{body}</p>
-              </li>
-            ))}
-          </ol>
-          <p className="mt-6 text-base leading-8">
+        </div>
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <ProcessTimeline />
+        </div>
+        <div className="relative mx-auto max-w-4xl px-4 sm:px-6">
+          <p className="mt-2 text-base leading-8 lg:mt-4">
             Stress management and relaxation education can be valuable; they cannot independently correct excessive workloads, inadequate resources, or unclear expectations. We support individuals in developing practical skills while helping organizations identify broader opportunities to improve the employee experience.
           </p>
         </div>
