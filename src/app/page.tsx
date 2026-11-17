@@ -34,7 +34,7 @@ const whatWeDo = [
   },
   {
     title: "Workplace & Organizational Wellness",
-    body: "Personalized wellness experiences designed for teams and organizations, including on-site chair massage, guided practices, and interactive workshops. Our programs can be delivered at your workplace, event location, or online, depending on the services selected.",
+    body: "Personalized wellness experiences designed for teams and organizations, including on-site chair massage, guided practices, and interactive workshops. We also offer organizational consulting, needs assessments, and workforce well-being support. Programs can be delivered at your workplace, event location, or online, depending on the services selected.",
   },
 ];
 
@@ -58,8 +58,12 @@ export default function HomePage() {
               {siteConfig.location}
             </p>
             <h1 className="mt-4 font-serif text-4xl leading-[1.12] text-teal sm:text-5xl lg:text-6xl">
-              You spend your days caring for others. Let this be your time.
+              Caring for Those Who Care for Others
             </h1>
+            <p className="mt-6 max-w-2xl font-serif text-2xl italic text-teal">
+              Restoring energy, empathy, and capacity through personalized wellness and
+              organizational well-being solutions.
+            </p>
             <p className="mt-6 max-w-2xl text-base leading-8 text-charcoal/90 sm:text-lg">
               Women carry many responsibilities. Whether you’re raising children,
               caring for family members, working in a helping profession, or leading
@@ -111,9 +115,14 @@ export default function HomePage() {
           />
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {whatWeDo.map((item) => (
-              <article key={item.title} className="rounded-3xl bg-white p-6">
+              <article key={item.title} className="flex flex-col rounded-3xl bg-white p-6">
                 <h3 className="font-serif text-2xl text-teal">{item.title}</h3>
                 <p className="mt-3 text-base leading-8">{item.body}</p>
+                {item.title.startsWith("Workplace") ? (
+                  <ButtonLink href="/for-organizations" className="mt-6 self-start">
+                    Explore Organizational Services
+                  </ButtonLink>
+                ) : null}
               </article>
             ))}
           </div>
@@ -161,18 +170,69 @@ export default function HomePage() {
               Our Mission
             </p>
             <h2 className="mt-3 font-serif text-3xl text-teal">
-              To make restorative wellness a natural part of caring well.
+              Restoring energy, empathy, and capacity for those who care.
             </h2>
             <p className="mt-4 text-base leading-8">
-              We believe caring for yourself and caring for others are not competing
-              priorities. Both deserve attention, and each can support the other.
+              Our vision is a thriving, inclusive community where caring for oneself is
+              valued as much as caring for others, and where individuals and organizations
+              work together to support sustainable well-being.
             </p>
-            <p className="mt-4 text-base leading-8">
-              You don&apos;t need an established wellness routine or prior experience to
-              begin. Wherever you are in your wellness journey, ThriveWell offers a place
-              to start.
-            </p>
+            <ButtonLink href="/about" className="mt-6">
+              Learn More About ThriveWell
+            </ButtonLink>
           </div>
+        </div>
+      </section>
+
+      <section className="bg-ivory py-16">
+        <div className="mx-auto grid max-w-7xl gap-6 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+          <article className="overflow-hidden rounded-3xl bg-white">
+            <Image
+              src="/hero.jpg"
+              alt="Women relaxing during a ThriveWell chair massage in a calm, plant-filled room"
+              width={1774}
+              height={887}
+              className="h-52 w-full object-cover object-[center_42%]"
+            />
+            <div className="p-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sage">
+                For Individuals
+              </p>
+              <h2 className="mt-2 font-serif text-3xl text-teal">
+                Personalized wellness and restorative care
+              </h2>
+              <p className="mt-3 text-base leading-8">
+                Make time to restore your energy, reconnect with yourself, and prioritize
+                your well-being.
+              </p>
+              <ButtonLink href="/services" className="mt-5">
+                Explore Individual Wellness
+              </ButtonLink>
+            </div>
+          </article>
+          <article className="overflow-hidden rounded-3xl bg-white">
+            <Image
+              src="/blog/cetronia-chair-massage-20261117.jpg"
+              alt="Mandy giving a chair massage"
+              width={1536}
+              height={2048}
+              className="h-52 w-full object-cover object-center"
+            />
+            <div className="p-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sage">
+                For Organizations
+              </p>
+              <h2 className="mt-2 font-serif text-3xl text-teal">
+                Workforce well-being and consulting
+              </h2>
+              <p className="mt-3 text-base leading-8">
+                Healthier people. Stronger teams. More sustainable organizations.
+              </p>
+              <ButtonLink href="/for-organizations" className="mt-5">
+                Explore Organizational Services
+              </ButtonLink>
+            </div>
+          </article>
         </div>
       </section>
 

@@ -24,6 +24,7 @@ export const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
+  { href: "/for-organizations", label: "For Organizations" },
   { href: "/membership", label: "Membership" },
   { href: "/caregiverwell", label: "CaregiverWell" },
   { href: "/motherwell", label: "MotherWell" },

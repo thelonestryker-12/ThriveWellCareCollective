@@ -48,7 +48,19 @@ export default function ServicesPage() {
           <h2 className="font-serif text-4xl text-teal">Massage Services</h2>
           <p className="mt-3 max-w-3xl text-base leading-8">
             All massage services are provided exclusively by licensed massage
-            therapists.
+            therapists. Workplace wellness can also be part of a broader partnership.{" "}
+            <Link href="/for-organizations" className="text-teal underline underline-offset-4">
+              Explore organizational services
+            </Link>
+            .
+          </p>
+          <p className="mt-4 max-w-3xl text-sm leading-7 text-charcoal/80">
+            ThriveWell Care Collective™ provides educational, restorative, and
+            organizational well-being services. Our wellness education, guided
+            relaxation, mindfulness, and organizational consulting services are
+            non-clinical and are not intended to diagnose, treat, or replace medical or
+            mental health care. Licensed massage therapy is delivered within the
+            therapist’s professional scope of practice.
           </p>
           <div className="mt-10 grid gap-6 lg:grid-cols-2">
             {massageServices.map((service) => (

@@ -5,13 +5,27 @@ import { useSearchParams } from "next/navigation";
 import { bookableOptions } from "@/lib/services";
 import { siteConfig } from "@/lib/site";
 
-const successMessage = "Thank you, we'll be in touch soon.";
+const individualSuccess = "Thank you, we'll be in touch soon.";
+const organizationSuccess =
+  "Thank you for contacting ThriveWell Care Collective™. We have received your organizational inquiry and will follow up to discuss your needs and next steps.";
+
+const organizationInterests = [
+  "Employee workshops",
+  "Workplace massage",
+  "Structured programs",
+  "Organizational needs assessment",
+  "Well-being strategy and consulting",
+  "Leadership and team development",
+  "Other or not sure",
+];
 
 export function ScheduleForm({ defaultService }: { defaultService?: string }) {
   const searchParams = useSearchParams();
   const serviceFromUrl = searchParams.get("service") ?? undefined;
   const initialService = defaultService ?? serviceFromUrl ?? "";
+  const initialInquiry = searchParams.get("inquiry") === "organization" ? "organization" : "individual";
 
+  const [inquiry, setInquiry] = useState<"individual" | "organization">(initialInquiry);
   const [status, setStatus] = useState<"idle" | "success" | "error" | "unavailable">("idle");
   const [message, setMessage] = useState("");
   const [pending, setPending] = useState(false);
@@ -19,7 +33,9 @@ export function ScheduleForm({ defaultService }: { defaultService?: string }) {
   if (status === "success") {
     return (
       <div className="rounded-3xl border border-sage/30 bg-eucalyptus/50 p-8">
-        <h2 className="font-serif text-3xl text-teal">{successMessage}</h2>
+        <h2 className="font-serif text-3xl text-teal">
+          {inquiry === "organization" ? organizationSuccess : individualSuccess}
+        </h2>
       </div>
     );
   }
@@ -31,19 +47,33 @@ export function ScheduleForm({ defaultService }: { defaultService?: string }) {
     const name = String(formData.get("name") ?? "").trim();
     const email = String(formData.get("email") ?? "").trim();
     const phone = String(formData.get("phone") ?? "").trim();
+    const inquiryType = String(formData.get("inquiry_type") ?? "individual");
     const service = String(formData.get("service") ?? "").trim();
     const notes = String(formData.get("message") ?? "").trim();
+    const organization = String(formData.get("organization") ?? "").trim();
+    const role = String(formData.get("role") ?? "").trim();
+    const organizationType = String(formData.get("organization_type") ?? "").trim();
+    const employeeCount = String(formData.get("employee_count") ?? "").trim();
+    const location = String(formData.get("location") ?? "").trim();
+    const interests = formData.getAll("interest").map(String);
 
     if (gotcha.trim()) {
       setStatus("success");
       return;
     }
 
-    if (!name || !email || !service) {
+    if (!name || !email || (inquiryType !== "organization" && !service)) {
       setStatus("error");
       setMessage(
-        "Please share your name, email, and the experience you would like to schedule.",
+        inquiryType === "organization"
+          ? "Please share your name and email."
+          : "Please share your name, email, and the experience you would like to schedule.",
       );
+      return;
+    }
+    if (inquiryType === "organization" && !organization) {
+      setStatus("error");
+      setMessage("Please share your organization name.");
       return;
     }
 
@@ -72,9 +102,19 @@ export function ScheduleForm({ defaultService }: { defaultService?: string }) {
           email,
           _replyto: email,
           phone,
-          service: serviceLabel,
+          inquiry_type: inquiryType,
+          service: inquiryType === "organization" ? "" : serviceLabel,
+          organization,
+          role,
+          organization_type: organizationType,
+          employee_count: employeeCount,
+          location,
+          interest: interests.join(", "),
           message: notes,
-          _subject: `New ThriveWell schedule request from ${name}`,
+          _subject:
+            inquiryType === "organization"
+              ? `New ThriveWell organizational inquiry from ${name}`
+              : `New ThriveWell schedule request from ${name}`,
           _gotcha: gotcha,
         }),
       });
@@ -100,6 +140,23 @@ export function ScheduleForm({ defaultService }: { defaultService?: string }) {
       aria-busy={pending}
       className="space-y-5 rounded-3xl bg-white p-6 shadow-[0_16px_40px_rgba(31,45,42,0.05)] sm:p-8"
     >
+      <fieldset>
+        <legend className="mb-2 text-sm font-medium text-charcoal">Inquiry type</legend>
+        <div className="flex flex-wrap gap-3">
+          {(["individual", "organization"] as const).map((value) => (
+            <label key={value} className="inline-flex items-center gap-2 text-sm">
+              <input
+                type="radio"
+                name="inquiry_type"
+                value={value}
+                checked={inquiry === value}
+                onChange={() => setInquiry(value)}
+              />
+              {value === "individual" ? "Individual" : "Organization"}
+            </label>
+          ))}
+        </div>
+      </fieldset>
       <input
         type="text"
         name="_gotcha"
@@ -147,6 +204,54 @@ export function ScheduleForm({ defaultService }: { defaultService?: string }) {
           />
         </div>
       </div>
+      {inquiry === "organization" ? (
+        <div className="space-y-5">
+          <p className="text-base leading-8">
+            Interested in workforce wellness programs, employee well-being initiatives, or organizational consulting? Tell us about your organization and what you hope to accomplish. We welcome the opportunity to learn your priorities and explore possible support.
+          </p>
+          <div>
+            <label htmlFor="organization" className="mb-2 block text-sm font-medium text-charcoal">Organization</label>
+            <input id="organization" name="organization" required className="w-full rounded-2xl border border-sage/40 bg-ivory px-4 py-3 outline-none focus:border-teal" />
+          </div>
+          <div className="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label htmlFor="role" className="mb-2 block text-sm font-medium text-charcoal">Role</label>
+              <input id="role" name="role" className="w-full rounded-2xl border border-sage/40 bg-ivory px-4 py-3 outline-none focus:border-teal" />
+            </div>
+            <div>
+              <label htmlFor="organization_type" className="mb-2 block text-sm font-medium text-charcoal">Organization type</label>
+              <input id="organization_type" name="organization_type" className="w-full rounded-2xl border border-sage/40 bg-ivory px-4 py-3 outline-none focus:border-teal" />
+            </div>
+          </div>
+          <div className="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label htmlFor="employee_count" className="mb-2 block text-sm font-medium text-charcoal">Approximate employee count</label>
+              <input id="employee_count" name="employee_count" className="w-full rounded-2xl border border-sage/40 bg-ivory px-4 py-3 outline-none focus:border-teal" />
+            </div>
+            <div>
+              <label htmlFor="location" className="mb-2 block text-sm font-medium text-charcoal">Location</label>
+              <input id="location" name="location" className="w-full rounded-2xl border border-sage/40 bg-ivory px-4 py-3 outline-none focus:border-teal" />
+            </div>
+          </div>
+          <fieldset>
+            <legend className="mb-2 text-sm font-medium text-charcoal">Areas of interest</legend>
+            <div className="space-y-2">
+              {organizationInterests.map((interest) => (
+                <label key={interest} className="flex items-start gap-2 text-sm leading-6">
+                  <input type="checkbox" name="interest" value={interest} className="mt-1" />
+                  {interest}
+                </label>
+              ))}
+            </div>
+          </fieldset>
+          <p id="privacy" className="text-sm leading-6 text-charcoal/80">
+            Please do not include sensitive employee or confidential organizational information.{" "}
+            <a href="#privacy" className="text-teal underline underline-offset-4">Privacy notice</a>
+            : this form collects only the contact details you choose to share so we can follow up. It is not a request for employee records.
+          </p>
+        </div>
+      ) : null}
+      {inquiry === "individual" ? (
       <div>
         <label htmlFor="service" className="mb-2 block text-sm font-medium text-charcoal">
           Experience
@@ -166,6 +271,7 @@ export function ScheduleForm({ defaultService }: { defaultService?: string }) {
           ))}
         </select>
       </div>
+      ) : null}
       <div>
         <label htmlFor="message" className="mb-2 block text-sm font-medium text-charcoal">
           Notes
@@ -196,7 +302,7 @@ export function ScheduleForm({ defaultService }: { defaultService?: string }) {
         disabled={pending}
         className="inline-flex scroll-mb-24 rounded-full bg-coral px-6 py-3 text-sm font-semibold text-charcoal focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal disabled:opacity-70 sm:scroll-mb-0"
       >
-        {pending ? "Sending..." : "Request a Time"}
+        {pending ? "Sending..." : inquiry === "organization" ? "Request a Conversation" : "Request a Time"}
       </button>
     </form>
   );
