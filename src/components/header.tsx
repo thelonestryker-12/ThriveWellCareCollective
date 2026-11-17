@@ -2,15 +2,32 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { PhoneIcon } from "@/components/contact-icons";
-import { navLinks, siteConfig } from "@/lib/site";
+import { individualLinks, navLinks, siteConfig } from "@/lib/site";
 import { ButtonLink } from "@/components/ui";
+
+function pathMatches(pathname: string, href: string) {
+  const path = pathname.length > 1 && pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
+  return path === href || path.startsWith(`${href}/`);
+}
 
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [individualsOpen, setIndividualsOpen] = useState(false);
+  const [mobileIndividualsOpen, setMobileIndividualsOpen] = useState(false);
+  const individualsActive = individualLinks.some((link) => pathMatches(pathname, link.href));
+
+  useEffect(() => {
+    if (!individualsOpen) return;
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") setIndividualsOpen(false);
+    }
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [individualsOpen]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-sage/25 bg-ivory/90 backdrop-blur-md">
@@ -33,23 +50,72 @@ export function Header() {
         </Link>
 
         <nav className="hidden items-center gap-x-3 gap-y-1 lg:flex xl:gap-x-4" aria-label="Primary">
-          {navLinks.map((link) => {
-            const active =
-              link.href === "/"
-                ? pathname === "/"
-                : pathname.startsWith(link.href);
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`whitespace-nowrap text-[12px] font-medium tracking-wide transition-colors xl:text-[13px] ${
-                  active ? "text-teal" : "text-charcoal hover:text-teal"
-                }`}
+          <Link
+            href="/about"
+            className={`whitespace-nowrap text-[12px] font-medium tracking-wide transition-colors xl:text-[13px] ${
+              pathMatches(pathname, "/about") ? "text-teal" : "text-charcoal hover:text-teal"
+            }`}
+          >
+            About
+          </Link>
+          <div
+            className="relative"
+            onMouseEnter={() => setIndividualsOpen(true)}
+            onMouseLeave={() => setIndividualsOpen(false)}
+          >
+            <button
+              type="button"
+              className={`inline-flex items-center gap-1 whitespace-nowrap text-[12px] font-medium tracking-wide xl:text-[13px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal ${
+                individualsActive || individualsOpen ? "text-teal" : "text-charcoal hover:text-teal"
+              }`}
+              aria-expanded={individualsOpen}
+              aria-controls="for-individuals-menu"
+              onClick={() => setIndividualsOpen((value) => !value)}
+            >
+              For Individuals
+              <span aria-hidden="true" className="text-[10px]">{individualsOpen ? "▴" : "▾"}</span>
+            </button>
+            {individualsOpen ? (
+              <div
+                id="for-individuals-menu"
+                className="absolute left-0 top-full z-50 min-w-52 pt-2"
               >
-                {link.label}
-              </Link>
-            );
-          })}
+                <ul className="rounded-2xl border border-sage/30 bg-ivory p-2 shadow-[0_12px_32px_rgba(31,45,42,0.08)]">
+                  {individualLinks.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        className={`block rounded-xl px-3 py-2 text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal ${
+                          pathMatches(pathname, link.href)
+                            ? "bg-eucalyptus/50 font-semibold text-teal"
+                            : "text-charcoal hover:bg-eucalyptus/40 hover:text-teal"
+                        }`}
+                        onClick={() => setIndividualsOpen(false)}
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+          </div>
+          <Link
+            href="/for-organizations"
+            className={`whitespace-nowrap text-[12px] font-medium tracking-wide transition-colors xl:text-[13px] ${
+              pathMatches(pathname, "/for-organizations") ? "text-teal" : "text-charcoal hover:text-teal"
+            }`}
+          >
+            For Organizations
+          </Link>
+          <Link
+            href="/blog"
+            className={`whitespace-nowrap text-[12px] font-medium tracking-wide transition-colors xl:text-[13px] ${
+              pathMatches(pathname, "/blog") ? "text-teal" : "text-charcoal hover:text-teal"
+            }`}
+          >
+            Journal
+          </Link>
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-3">
@@ -66,10 +132,13 @@ export function Header() {
           </div>
           <button
             type="button"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-sage/50 text-teal lg:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-sage/50 text-teal focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal lg:hidden"
             aria-expanded={open}
             aria-label="Toggle menu"
-            onClick={() => setOpen((value) => !value)}
+            onClick={() => {
+              setOpen((value) => !value);
+              setMobileIndividualsOpen(individualsActive);
+            }}
           >
             <span className="sr-only">Menu</span>
             <span className="flex flex-col gap-1.5">
@@ -83,15 +152,47 @@ export function Header() {
 
       {open ? (
         <div className="border-t border-sage/20 bg-ivory px-4 pt-4 pb-24 sm:pb-4 lg:hidden">
-          <nav className="flex flex-col gap-3" aria-label="Mobile">
-            {navLinks.map((link) => (
+          <nav className="flex flex-col gap-1" aria-label="Mobile">
+            <Link href="/about" onClick={() => setOpen(false)} className={`rounded-lg px-2 py-2 text-base ${pathMatches(pathname, "/about") ? "font-semibold text-teal" : "text-charcoal hover:bg-eucalyptus/40"}`}>
+              About
+            </Link>
+            <button
+              type="button"
+              className={`flex items-center justify-between rounded-lg px-2 py-2 text-left text-base focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal ${individualsActive ? "font-semibold text-teal" : "text-charcoal"}`}
+              aria-expanded={mobileIndividualsOpen}
+              aria-controls="mobile-individuals-menu"
+              onClick={() => setMobileIndividualsOpen((value) => !value)}
+            >
+              For Individuals
+              <span aria-hidden="true">{mobileIndividualsOpen ? "▴" : "▾"}</span>
+            </button>
+            {mobileIndividualsOpen ? (
+              <ul id="mobile-individuals-menu" className="mb-1 ml-3 flex flex-col gap-1 border-l border-sage/30 pl-3">
+                {individualLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      onClick={() => setOpen(false)}
+                      className={`block rounded-lg px-2 py-2 text-base ${
+                        pathMatches(pathname, link.href) ? "font-semibold text-teal" : "text-charcoal hover:bg-eucalyptus/40"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+            {navLinks.filter((link) => link.href !== "/about").map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-2 py-2 text-base text-charcoal hover:bg-eucalyptus/40"
+                className={`rounded-lg px-2 py-2 text-base ${
+                  pathMatches(pathname, link.href) ? "font-semibold text-teal" : "text-charcoal hover:bg-eucalyptus/40"
+                }`}
               >
-                {link.label}
+                {"headerLabel" in link ? link.headerLabel : link.label}
               </Link>
             ))}
             <ButtonLink href="/schedule" className="mt-2 w-full">

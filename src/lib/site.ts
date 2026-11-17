@@ -20,13 +20,15 @@ export const siteConfig = {
 export const siteTarget = process.env.SITE_TARGET === "ghpages" ? "ghpages" : "bluehost";
 export const isIndexableSite = siteTarget !== "ghpages";
 
-export const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
+export const individualLinks = [
   { href: "/services", label: "Services" },
-  { href: "/for-organizations", label: "For Organizations" },
   { href: "/membership", label: "Membership" },
   { href: "/caregiverwell", label: "CaregiverWell" },
   { href: "/motherwell", label: "MotherWell" },
-  { href: "/blog", label: "The ThriveWell Journal" },
+] as const;
+
+export const navLinks = [
+  { href: "/about", label: "About" },
+  { href: "/for-organizations", label: "For Organizations" },
+  { href: "/blog", label: "The ThriveWell Journal", headerLabel: "Journal" },
 ] as const;
