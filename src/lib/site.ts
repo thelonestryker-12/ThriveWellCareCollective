@@ -21,7 +21,6 @@ export const siteTarget = process.env.SITE_TARGET === "ghpages" ? "ghpages" : "b
 export const isIndexableSite = siteTarget !== "ghpages";
 
 export const serviceLinks = [
-  { href: "/services", label: "Services" },
   { href: "/membership", label: "Membership" },
   { href: "/caregiverwell", label: "CaregiverWell" },
   { href: "/motherwell", label: "MotherWell" },

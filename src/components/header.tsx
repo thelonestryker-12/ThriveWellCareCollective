@@ -19,17 +19,53 @@ export function Header() {
   const [servicesOpen, setServicesOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const servicesRootRef = useRef<HTMLDivElement>(null);
-  const servicesActive = serviceLinks.some((link) => pathMatches(pathname, link.href));
+  const servicesOpenRef = useRef(false);
+  const servicesHoverTimer = useRef<number | null>(null);
+  const servicesActive =
+    pathMatches(pathname, "/services") || serviceLinks.some((link) => pathMatches(pathname, link.href));
+
+  function setServicesMenu(next: boolean) {
+    servicesOpenRef.current = next;
+    setServicesOpen(next);
+  }
+
+  function clearServicesHoverTimer() {
+    if (servicesHoverTimer.current !== null) {
+      window.clearTimeout(servicesHoverTimer.current);
+      servicesHoverTimer.current = null;
+    }
+  }
+
+  function openServicesFromHover() {
+    if (servicesHoverTimer.current !== null || servicesOpenRef.current) return;
+    servicesHoverTimer.current = window.setTimeout(() => {
+      servicesHoverTimer.current = null;
+      setServicesMenu(true);
+    }, 150);
+  }
+
+  function closeServicesFromHover() {
+    clearServicesHoverTimer();
+    setServicesMenu(false);
+  }
+
+  function toggleServicesMenu() {
+    clearServicesHoverTimer();
+    setServicesMenu(!servicesOpenRef.current);
+  }
+
+  useEffect(() => clearServicesHoverTimer, []);
 
   useEffect(() => {
     if (!servicesOpen) return;
     function onKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") setServicesOpen(false);
+      if (event.key === "Escape") setServicesMenu(false);
     }
     function onPointerDown(event: PointerEvent) {
       const root = servicesRootRef.current;
       if (root && event.target instanceof Node && !root.contains(event.target)) {
-        setServicesOpen(false);
+        clearServicesHoverTimer();
+        setServicesMenu(false);
       }
     }
     document.addEventListener("keydown", onKeyDown);
@@ -80,8 +116,8 @@ export function Header() {
           <div
             ref={servicesRootRef}
             className="relative"
-            onMouseEnter={() => setServicesOpen(true)}
-            onMouseLeave={() => setServicesOpen(false)}
+            onMouseEnter={openServicesFromHover}
+            onMouseLeave={closeServicesFromHover}
           >
             <div className="inline-flex items-center">
               <Link
@@ -102,7 +138,7 @@ export function Header() {
                 aria-controls="services-menu"
                 aria-haspopup="true"
                 aria-label={servicesOpen ? "Close Services menu" : "Open Services menu"}
-                onClick={() => setServicesOpen((value) => !value)}
+                onClick={toggleServicesMenu}
               >
                 <span aria-hidden="true">{servicesOpen ? "▴" : "▾"}</span>
               </button>
@@ -120,7 +156,7 @@ export function Header() {
                             ? "bg-eucalyptus/50 font-semibold text-teal"
                             : "text-charcoal hover:bg-eucalyptus/40 hover:text-teal"
                         }`}
-                        onClick={() => setServicesOpen(false)}
+                        onClick={() => setServicesMenu(false)}
                       >
                         {link.label}
                       </Link>
