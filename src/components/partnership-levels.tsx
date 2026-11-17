@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { LotusIcon } from "@/components/botanicals";
 
 type IconProps = { className?: string };
@@ -120,24 +120,55 @@ const levels = [
 ];
 
 export function PartnershipLevels() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openLevels, setOpenLevels] = useState<boolean[]>(() => levels.map(() => false));
+  const faceRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const [faceHeight, setFaceHeight] = useState<number | null>(null);
+
+  useLayoutEffect(() => {
+    function measure() {
+      const wide = window.matchMedia("(min-width: 1024px)").matches;
+      const nodes = faceRefs.current.filter((node): node is HTMLDivElement => node !== null);
+      if (!wide || nodes.length === 0) {
+        setFaceHeight(null);
+        return;
+      }
+      const max = Math.max(
+        ...nodes.map((node) => {
+          const previous = node.style.minHeight;
+          node.style.minHeight = "0px";
+          const height = node.getBoundingClientRect().height;
+          node.style.minHeight = previous;
+          return height;
+        }),
+      );
+      setFaceHeight((current) => (current === max ? current : max));
+    }
+
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, []);
 
   return (
     <div className="mt-8">
-      <ul className="grid grid-cols-1 items-start gap-6 lg:grid-cols-3 lg:grid-rows-[auto_auto_auto_auto_auto_auto] lg:gap-x-6 lg:gap-y-0">
+      <ul className="grid grid-cols-1 items-start gap-6 lg:grid-cols-3">
         {levels.map((level, index) => {
           const Icon = level.icon;
-          const expanded = openIndex === index;
+          const expanded = openLevels[index];
           const panelId = `level-${index}-included`;
           return (
             <li
               key={level.eyebrow}
-              className={`level-card overflow-hidden rounded-[1.75rem] shadow-[0_12px_32px_rgba(31,45,42,0.05)] lg:grid lg:grid-rows-subgrid ${
-                expanded ? "lg:row-span-6" : "lg:row-span-5"
-              } ${level.card}`}
+              className={`level-card flex flex-col overflow-hidden rounded-[1.75rem] shadow-[0_12px_32px_rgba(31,45,42,0.05)] ${level.card}`}
             >
               <div className={`h-1.5 ${level.accent}`} aria-hidden="true" />
-              <div className="px-5 pt-6 sm:px-6">
+              <div
+                ref={(node) => {
+                  faceRefs.current[index] = node;
+                }}
+                className="flex flex-1 flex-col px-5 py-6 sm:px-6"
+                style={faceHeight ? { minHeight: faceHeight } : undefined}
+              >
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sage">{level.eyebrow}</p>
                 <div
                   className={`relative mt-4 flex h-16 w-16 items-center justify-center rounded-full bg-ivory ${level.ring}`}
@@ -146,8 +177,7 @@ export function PartnershipLevels() {
                   <span className={`absolute inset-[6px] rounded-full border ${level.inner}`} />
                   <Icon className="h-8 w-8" />
                 </div>
-              </div>
-              <h3 className="mt-4 px-5 font-serif text-3xl leading-tight text-teal sm:px-6 lg:mt-0 lg:pt-4">
+                <h3 className="mt-4 font-serif text-3xl leading-tight text-teal">
                 {level.eyebrow === "Level 3" ? (
                   <>
                     Strategic Workforce <span className="whitespace-nowrap">Well‑Being</span> Partnerships
@@ -156,19 +186,21 @@ export function PartnershipLevels() {
                   level.title
                 )}
               </h3>
-              <div className="mt-3 px-5 sm:px-6 lg:mt-0 lg:pt-3">
+              <div className="mt-3">
                 <p className="text-sm leading-6 text-charcoal/90">{level.intro}</p>
                 {level.preface ? <p className="mt-3 text-sm leading-6 text-charcoal/90">{level.preface}</p> : null}
                 <p className="mt-3 text-sm leading-6 font-semibold text-teal">{level.suited}</p>
                 {level.after ? <p className="mt-3 text-sm leading-6 text-charcoal/90">{level.after}</p> : null}
               </div>
-              <div className="mt-auto px-5 pt-5 pb-6 sm:px-6">
+              <div className="mt-auto pt-5">
                 <button
                   type="button"
                   className="flex w-full cursor-pointer items-center justify-between gap-3 rounded-full border border-sage/40 bg-ivory/80 px-4 py-2.5 text-left text-sm font-semibold text-teal focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
                   aria-expanded={expanded}
                   aria-controls={panelId}
-                  onClick={() => setOpenIndex(expanded ? null : index)}
+                  onClick={() =>
+                    setOpenLevels((current) => current.map((value, itemIndex) => (itemIndex === index ? !value : value)))
+                  }
                 >
                   <span>
                     See what's included
@@ -178,6 +210,7 @@ export function PartnershipLevels() {
                     ▾
                   </span>
                 </button>
+              </div>
               </div>
               {expanded ? (
                 <div id={panelId} className="px-5 pb-6 text-sm leading-5 text-charcoal/90 sm:px-6">
