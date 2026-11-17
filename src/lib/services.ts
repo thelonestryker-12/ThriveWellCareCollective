@@ -31,8 +31,8 @@ export const massageServices: Service[] = [
     name: "ThriveWell Signature Massage™",
     category: "massage",
     prices: [
-      { duration: "60 minutes", price: "$100" },
-      { duration: "90 minutes", price: "$130" },
+      { duration: "60 minutes", price: "$120" },
+      { duration: "90 minutes", price: "$150" },
     ],
     summary:
       "A full-body massage designed for people who spend their days caring for others, with special focus on the head, hands, hips, and feet.",
@@ -47,8 +47,8 @@ export const massageServices: Service[] = [
     name: "Swedish Massage",
     category: "massage",
     prices: [
-      { duration: "60 minutes", price: "$100" },
-      { duration: "90 minutes", price: "$130" },
+      { duration: "60 minutes", price: "$120" },
+      { duration: "90 minutes", price: "$150" },
     ],
     summary:
       "Long, flowing strokes that encourage relaxation, support circulation, and ease everyday muscle tension.",
@@ -62,8 +62,8 @@ export const massageServices: Service[] = [
     name: "Integrative Massage",
     category: "massage",
     prices: [
-      { duration: "60 minutes", price: "$110" },
-      { duration: "90 minutes", price: "$140" },
+      { duration: "60 minutes", price: "$130" },
+      { duration: "90 minutes", price: "$160" },
     ],
     summary:
       "A customized blend of Swedish massage and targeted techniques shaped around your preferences and areas of focus.",
@@ -77,7 +77,7 @@ export const massageServices: Service[] = [
     slug: "reflexology",
     name: "Reflexology",
     category: "massage",
-    prices: [{ duration: "60 minutes", price: "$90" }],
+    prices: [{ duration: "60 minutes", price: "$110" }],
     summary:
       "Gentle, intentional pressure on specific areas of the feet to promote deep relaxation and a sense of balance.",
     description: [
@@ -90,8 +90,8 @@ export const massageServices: Service[] = [
     name: "Cupping Therapy",
     category: "massage",
     prices: [
-      { duration: "60 minutes", price: "$110" },
-      { duration: "90 minutes", price: "$140" },
+      { duration: "60 minutes", price: "$130" },
+      { duration: "90 minutes", price: "$160" },
     ],
     summary:
       "Massage with specialized cups that create gentle suction to support circulation, ease tension, and promote mobility.",
@@ -105,8 +105,8 @@ export const massageServices: Service[] = [
     name: "Sports Massage (Assisted Stretching Focus)",
     category: "massage",
     prices: [
-      { duration: "60 minutes", price: "$110" },
-      { duration: "90 minutes", price: "$140" },
+      { duration: "60 minutes", price: "$130" },
+      { duration: "90 minutes", price: "$160" },
     ],
     summary:
       "Performance-focused massage with assisted stretching to support flexibility, mobility, and muscle recovery.",
