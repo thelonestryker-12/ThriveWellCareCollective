@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { individualLinks, siteConfig } from "@/lib/site";
+import { serviceLinks, siteConfig } from "@/lib/site";
 
 export function Footer() {
   return (
@@ -59,9 +59,11 @@ export function Footer() {
               </Link>
             </li>
             <li>
-              <p className="text-white/70">For Individuals</p>
+              <Link href="/services" className="text-white/90 hover:text-coral">
+                Services
+              </Link>
               <ul className="mt-1 space-y-1 pl-3">
-                {individualLinks.map((link) => (
+                {serviceLinks.map((link) => (
                   <li key={link.href}>
                     <Link href={link.href} className="text-white/90 hover:text-coral">
                       {link.label}

@@ -20,7 +20,7 @@ export const siteConfig = {
 export const siteTarget = process.env.SITE_TARGET === "ghpages" ? "ghpages" : "bluehost";
 export const isIndexableSite = siteTarget !== "ghpages";
 
-export const individualLinks = [
+export const serviceLinks = [
   { href: "/services", label: "Services" },
   { href: "/membership", label: "Membership" },
   { href: "/caregiverwell", label: "CaregiverWell" },

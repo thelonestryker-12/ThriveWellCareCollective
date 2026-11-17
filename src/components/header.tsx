@@ -2,10 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { PhoneIcon } from "@/components/contact-icons";
-import { individualLinks, navLinks, siteConfig } from "@/lib/site";
+import { navLinks, serviceLinks, siteConfig } from "@/lib/site";
 import { ButtonLink } from "@/components/ui";
 
 function pathMatches(pathname: string, href: string) {
@@ -16,18 +16,29 @@ function pathMatches(pathname: string, href: string) {
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const [individualsOpen, setIndividualsOpen] = useState(false);
-  const [mobileIndividualsOpen, setMobileIndividualsOpen] = useState(false);
-  const individualsActive = individualLinks.some((link) => pathMatches(pathname, link.href));
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const servicesRootRef = useRef<HTMLDivElement>(null);
+  const servicesActive = serviceLinks.some((link) => pathMatches(pathname, link.href));
 
   useEffect(() => {
-    if (!individualsOpen) return;
+    if (!servicesOpen) return;
     function onKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") setIndividualsOpen(false);
+      if (event.key === "Escape") setServicesOpen(false);
+    }
+    function onPointerDown(event: PointerEvent) {
+      const root = servicesRootRef.current;
+      if (root && event.target instanceof Node && !root.contains(event.target)) {
+        setServicesOpen(false);
+      }
     }
     document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
-  }, [individualsOpen]);
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("pointerdown", onPointerDown);
+    };
+  }, [servicesOpen]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-sage/25 bg-ivory/90 backdrop-blur-md">
@@ -67,38 +78,49 @@ export function Header() {
             About
           </Link>
           <div
+            ref={servicesRootRef}
             className="relative"
-            onMouseEnter={() => setIndividualsOpen(true)}
-            onMouseLeave={() => setIndividualsOpen(false)}
+            onMouseEnter={() => setServicesOpen(true)}
+            onMouseLeave={() => setServicesOpen(false)}
           >
-            <button
-              type="button"
-              className={`inline-flex items-center gap-1 whitespace-nowrap text-[12px] font-medium tracking-wide xl:text-[13px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal ${
-                individualsActive || individualsOpen ? "text-teal" : "text-charcoal hover:text-teal"
-              }`}
-              aria-expanded={individualsOpen}
-              aria-controls="for-individuals-menu"
-              onClick={() => setIndividualsOpen((value) => !value)}
-            >
-              For Individuals
-              <span aria-hidden="true" className="text-[10px]">{individualsOpen ? "▴" : "▾"}</span>
-            </button>
-            {individualsOpen ? (
-              <div
-                id="for-individuals-menu"
-                className="absolute left-0 top-full z-50 min-w-52 pt-2"
+            <div className="inline-flex items-center">
+              <Link
+                href="/services"
+                aria-current={pathMatches(pathname, "/services") ? "page" : undefined}
+                className={`whitespace-nowrap text-[12px] font-medium tracking-wide transition-colors xl:text-[13px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal ${
+                  servicesActive ? "text-teal" : "text-charcoal hover:text-teal"
+                }`}
               >
+                Services
+              </Link>
+              <button
+                type="button"
+                className={`inline-flex h-8 w-7 items-center justify-center text-[10px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal ${
+                  servicesActive || servicesOpen ? "text-teal" : "text-charcoal hover:text-teal"
+                }`}
+                aria-expanded={servicesOpen}
+                aria-controls="services-menu"
+                aria-haspopup="true"
+                aria-label={servicesOpen ? "Close Services menu" : "Open Services menu"}
+                onClick={() => setServicesOpen((value) => !value)}
+              >
+                <span aria-hidden="true">{servicesOpen ? "▴" : "▾"}</span>
+              </button>
+            </div>
+            {servicesOpen ? (
+              <div id="services-menu" className="absolute left-0 top-full z-50 min-w-52 pt-2">
                 <ul className="rounded-2xl border border-sage/30 bg-ivory p-2 shadow-[0_12px_32px_rgba(31,45,42,0.08)]">
-                  {individualLinks.map((link) => (
+                  {serviceLinks.map((link) => (
                     <li key={link.href}>
                       <Link
                         href={link.href}
+                        aria-current={pathMatches(pathname, link.href) ? "page" : undefined}
                         className={`block rounded-xl px-3 py-2 text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal ${
                           pathMatches(pathname, link.href)
                             ? "bg-eucalyptus/50 font-semibold text-teal"
                             : "text-charcoal hover:bg-eucalyptus/40 hover:text-teal"
                         }`}
-                        onClick={() => setIndividualsOpen(false)}
+                        onClick={() => setServicesOpen(false)}
                       >
                         {link.label}
                       </Link>
@@ -145,7 +167,7 @@ export function Header() {
             aria-label="Toggle menu"
             onClick={() => {
               setOpen((value) => !value);
-              setMobileIndividualsOpen(individualsActive);
+              setMobileServicesOpen(servicesActive);
             }}
           >
             <span className="sr-only">Menu</span>
@@ -167,22 +189,36 @@ export function Header() {
             <Link href="/about" onClick={() => setOpen(false)} className={`rounded-lg px-2 py-2 text-base ${pathMatches(pathname, "/about") ? "font-semibold text-teal" : "text-charcoal hover:bg-eucalyptus/40"}`}>
               About
             </Link>
-            <button
-              type="button"
-              className={`flex items-center justify-between rounded-lg px-2 py-2 text-left text-base focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal ${individualsActive ? "font-semibold text-teal" : "text-charcoal"}`}
-              aria-expanded={mobileIndividualsOpen}
-              aria-controls="mobile-individuals-menu"
-              onClick={() => setMobileIndividualsOpen((value) => !value)}
-            >
-              For Individuals
-              <span aria-hidden="true">{mobileIndividualsOpen ? "▴" : "▾"}</span>
-            </button>
-            {mobileIndividualsOpen ? (
-              <ul id="mobile-individuals-menu" className="mb-1 ml-3 flex flex-col gap-1 border-l border-sage/30 pl-3">
-                {individualLinks.map((link) => (
+            <div className="flex items-center">
+              <Link
+                href="/services"
+                aria-current={pathMatches(pathname, "/services") ? "page" : undefined}
+                onClick={() => setOpen(false)}
+                className={`flex-1 rounded-lg px-2 py-2 text-base ${
+                  servicesActive ? "font-semibold text-teal" : "text-charcoal hover:bg-eucalyptus/40"
+                }`}
+              >
+                Services
+              </Link>
+              <button
+                type="button"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-lg text-charcoal focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
+                aria-expanded={mobileServicesOpen}
+                aria-controls="mobile-services-menu"
+                aria-haspopup="true"
+                aria-label={mobileServicesOpen ? "Close Services menu" : "Open Services menu"}
+                onClick={() => setMobileServicesOpen((value) => !value)}
+              >
+                <span aria-hidden="true">{mobileServicesOpen ? "▴" : "▾"}</span>
+              </button>
+            </div>
+            {mobileServicesOpen ? (
+              <ul id="mobile-services-menu" className="mb-1 ml-3 flex flex-col gap-1 border-l border-sage/30 pl-3">
+                {serviceLinks.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
+                      aria-current={pathMatches(pathname, link.href) ? "page" : undefined}
                       onClick={() => setOpen(false)}
                       className={`block rounded-lg px-2 py-2 text-base ${
                         pathMatches(pathname, link.href) ? "font-semibold text-teal" : "text-charcoal hover:bg-eucalyptus/40"
