@@ -57,6 +57,15 @@ export function Header() {
   useEffect(() => clearServicesHoverTimer, []);
 
   useEffect(() => {
+    if (!open) return;
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") setOpen(false);
+    }
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open]);
+
+  useEffect(() => {
     if (!servicesOpen) return;
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") setServicesMenu(false);
@@ -200,18 +209,25 @@ export function Header() {
             type="button"
             className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-sage/50 text-teal focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal lg:hidden"
             aria-expanded={open}
-            aria-label="Toggle menu"
+            aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => {
               setOpen((value) => !value);
               setMobileServicesOpen(servicesActive);
             }}
           >
             <span className="sr-only">Menu</span>
-            <span className="flex flex-col gap-1.5">
-              <span className="block h-0.5 w-5 bg-current" />
-              <span className="block h-0.5 w-5 bg-current" />
-              <span className="block h-0.5 w-5 bg-current" />
-            </span>
+            {open ? (
+              <span className="relative block h-5 w-5" aria-hidden="true">
+                <span className="absolute top-1/2 left-0 block h-0.5 w-5 -translate-y-1/2 rotate-45 bg-current" />
+                <span className="absolute top-1/2 left-0 block h-0.5 w-5 -translate-y-1/2 -rotate-45 bg-current" />
+              </span>
+            ) : (
+              <span className="flex flex-col gap-1.5" aria-hidden="true">
+                <span className="block h-0.5 w-5 bg-current" />
+                <span className="block h-0.5 w-5 bg-current" />
+                <span className="block h-0.5 w-5 bg-current" />
+              </span>
+            )}
           </button>
         </div>
       </div>

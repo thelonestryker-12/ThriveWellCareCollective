@@ -55,7 +55,7 @@ export default function ForOrganizationsPage() {
           className="pointer-events-none absolute -left-16 top-8 h-56 w-56 opacity-50"
         />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="font-serif text-4xl text-teal">Three ways to work together</h2>
+          <h2 className="font-serif text-4xl text-teal">Three Ways to Work Together</h2>
           <PartnershipLevels />
         </div>
       </section>
@@ -120,7 +120,7 @@ export default function ForOrganizationsPage() {
           <p className="mt-4 text-base leading-8">
             We have particular interest in organizations whose people care for, educate, protect, and serve others.
           </p>
-          <h2 className="mt-10 font-serif text-4xl text-teal">Service scope</h2>
+          <h2 className="mt-10 font-serif text-4xl text-teal">Service Scope</h2>
           <p className="mt-4 text-base leading-8">
             ThriveWell Care Collective™ provides educational, restorative, and organizational well-being services. Our wellness education, guided relaxation, mindfulness, and organizational consulting services are non-clinical and are not intended to diagnose, treat, or replace medical or mental health care. Licensed massage therapy is delivered within the therapist’s professional scope of practice.
           </p>

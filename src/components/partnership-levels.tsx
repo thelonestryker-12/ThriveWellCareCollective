@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { LotusIcon } from "@/components/botanicals";
 
 type IconProps = { className?: string };
@@ -58,7 +61,7 @@ const levels = [
   },
   {
     eyebrow: "Level 3",
-    title: "Strategic Workforce Well-Being Partnerships",
+    title: "Strategic Workforce Well\u2011Being Partnerships",
     scale: "Strategic",
     intro:
       "Understanding organizational needs. Designing informed solutions. Supporting sustainable change. These engagements consider workforce experiences alongside communication, workload, expectations, resources, leadership practices, and culture.",
@@ -117,15 +120,19 @@ const levels = [
 ];
 
 export function PartnershipLevels() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
   return (
     <div className="mt-8">
       <ul className="grid grid-cols-1 items-start gap-6 lg:grid-cols-3">
-        {levels.map((level) => {
+        {levels.map((level, index) => {
           const Icon = level.icon;
+          const expanded = openIndex === index;
+          const panelId = `level-${index}-included`;
           return (
             <li key={level.eyebrow} className={`level-card flex flex-col overflow-hidden rounded-[1.75rem] shadow-[0_12px_32px_rgba(31,45,42,0.05)] ${level.card}`}>
               <div className={`h-1.5 ${level.accent}`} aria-hidden="true" />
-              <div className="flex flex-1 flex-col px-5 py-6 sm:px-6 lg:min-h-[43rem]">
+              <div className="flex flex-col px-5 py-6 sm:px-6">
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sage">{level.eyebrow}</p>
                 <div
                   className={`relative mt-4 flex h-16 w-16 items-center justify-center rounded-full bg-ivory ${level.ring}`}
@@ -134,22 +141,36 @@ export function PartnershipLevels() {
                   <span className={`absolute inset-[6px] rounded-full border ${level.inner}`} />
                   <Icon className="h-8 w-8" />
                 </div>
-                <h3 className="mt-4 font-serif text-3xl leading-tight text-teal">{level.title}</h3>
+                <h3 className="mt-4 font-serif text-3xl leading-tight text-teal">
+                  {level.eyebrow === "Level 3" ? (
+                    <>
+                      Strategic Workforce <span className="whitespace-nowrap">Well‑Being</span> Partnerships
+                    </>
+                  ) : (
+                    level.title
+                  )}
+                </h3>
                 <p className="mt-3 text-sm leading-6 text-charcoal/90">{level.intro}</p>
                 {level.preface ? <p className="mt-3 text-sm leading-6 text-charcoal/90">{level.preface}</p> : null}
                 <p className="mt-3 text-sm leading-6 font-semibold text-teal">{level.suited}</p>
                 {level.after ? <p className="mt-3 text-sm leading-6 text-charcoal/90">{level.after}</p> : null}
-                <details className="group mt-auto pt-5">
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-3 rounded-full border border-sage/40 bg-ivory/80 px-4 py-2.5 text-sm font-semibold text-teal focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal [&::-webkit-details-marker]:hidden">
-                    <span>
-                      See what's included
-                      <span className="sr-only"> in {level.title}</span>
-                    </span>
-                    <span aria-hidden="true" className="text-xs motion-safe:transition-transform group-open:rotate-180">
-                      ▾
-                    </span>
-                  </summary>
-                  <div className="pt-4 text-sm leading-6 text-charcoal/90">
+                <button
+                  type="button"
+                  className="mt-5 flex w-full cursor-pointer items-center justify-between gap-3 rounded-full border border-sage/40 bg-ivory/80 px-4 py-2.5 text-left text-sm font-semibold text-teal focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
+                  aria-expanded={expanded}
+                  aria-controls={panelId}
+                  onClick={() => setOpenIndex(expanded ? null : index)}
+                >
+                  <span>
+                    See what's included
+                    <span className="sr-only"> in {level.title}</span>
+                  </span>
+                  <span aria-hidden="true" className={`text-xs motion-safe:transition-transform ${expanded ? "rotate-180" : ""}`}>
+                    ▾
+                  </span>
+                </button>
+                {expanded ? (
+                  <div id={panelId} className="pt-4 text-sm leading-5 text-charcoal/90">
                     {level.items.length > 0 ? (
                       <ul className="list-disc space-y-1 pl-5">
                         {level.items.map((item) => (
@@ -158,11 +179,11 @@ export function PartnershipLevels() {
                       </ul>
                     ) : null}
                     {level.groups.length > 0 ? (
-                      <div className="space-y-4">
+                      <div className="grid gap-x-5 gap-y-3 lg:grid-cols-2">
                         {level.groups.map((group) => (
                           <div key={group.title}>
-                            <h4 className="font-serif text-2xl text-teal">{group.title}</h4>
-                            <ul className="mt-2 list-disc space-y-1 pl-5">
+                            <h4 className="font-serif text-xl leading-tight text-teal">{group.title}</h4>
+                            <ul className="mt-1 list-disc space-y-0.5 pl-4 text-[13px] leading-5">
                               {group.items.map((item) => (
                                 <li key={item}>{item}</li>
                               ))}
@@ -172,13 +193,13 @@ export function PartnershipLevels() {
                       </div>
                     ) : null}
                   </div>
-                </details>
+                ) : null}
               </div>
             </li>
           );
         })}
       </ul>
-      <div className="mt-8" aria-hidden="true">
+      <div className="mt-8 hidden lg:block" aria-hidden="true">
         <div className="h-px bg-gradient-to-r from-sage/50 via-coral/70 to-teal" />
         <div className="mt-3 grid grid-cols-3 text-center text-[11px] font-semibold uppercase tracking-[0.18em]">
           <p className="text-sage">Introductory</p>
