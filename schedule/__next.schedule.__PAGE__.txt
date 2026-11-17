@@ -1,0 +1,44 @@
+1:"$Sreact.fragment"
+2:"$Sreact.suspense"
+3:I[43560,["/ThriveWellCareCollective/_next/static/chunks/3fntmmi971322.js","/ThriveWellCareCollective/_next/static/chunks/3oywsipmyu1sd.js","/ThriveWellCareCollective/_next/static/chunks/278m5j5rm2r1z.js"],"ScheduleForm"]
+4:I[97367,["/ThriveWellCareCollective/_next/static/chunks/3fntmmi971322.js","/ThriveWellCareCollective/_next/static/chunks/3oywsipmyu1sd.js"],"OutletBoundary"]
+8:I[97367,["/ThriveWellCareCollective/_next/static/chunks/3fntmmi971322.js","/ThriveWellCareCollective/_next/static/chunks/3oywsipmyu1sd.js"],"ViewportBoundary"]
+9:I[97367,["/ThriveWellCareCollective/_next/static/chunks/3fntmmi971322.js","/ThriveWellCareCollective/_next/static/chunks/3oywsipmyu1sd.js"],"MetadataBoundary"]
+7:X
+23:X
+23:C
+0:{"buildId":"TgHoaidAEguTKvTxHAmVs","data":[{"rsc":["$","$1","c",{"children":[["$","section",null,{"className":"bg-ivory py-20","children":["$","div",null,{"className":"mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8","children":[["$","div",null,{"children":[["$","div",null,{"className":"max-w-3xl","children":[["$","p",null,{"className":"mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-sage","children":"Schedule"}],["$","h1",null,{"className":"font-serif text-3xl leading-tight text-teal sm:text-4xl md:text-5xl","children":"Choose an available time that works for you."}],null]}],["$","p",null,{"className":"mt-6 text-base leading-8","children":"Come as you are. You do not need to prepare or have previous experience with any of our wellness practices. We will guide you from there."}],["$","p",null,{"className":"mt-4 text-base leading-8","children":"Share the experience you would like and a few preferred times. We will follow up to confirm your visit."}],["$","p",null,{"className":"mt-6 text-sm","children":["Prefer email?"," ",["$","a",null,{"className":"text-teal underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal","href":"mailto:hello@thrivewellcarecollective.com","children":"hello@thrivewellcarecollective.com"}]]}],["$","p",null,{"className":"mt-2 text-sm","children":["Prefer to talk?"," ",["$","a",null,{"className":"text-teal underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal","href":"tel:+18352851304","children":"Call"}]," ","or"," ",["$","a",null,{"className":"text-teal underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal","href":"sms:+18352851304","children":"text"}]," ",["$","a",null,{"className":"text-teal underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal","href":"tel:+18352851304","children":"(835) 285-1304"}]]}]]}],["$","$2",null,{"fallback":["$","div",null,{"className":"rounded-3xl bg-white p-8 text-sm text-charcoal/70","children":"Loading the scheduling form..."}],"children":["$","$L3",null,{}]}]]}]}],[["$","script","script-0",{"src":"/ThriveWellCareCollective/_next/static/chunks/278m5j5rm2r1z.js","async":true}]],["$","$L4",null,{"children":["$","$2",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":"$@6","staleTime":"$7","varyParams":null},{"rsc":["$","$1","h",{"children":[null,["$","$L8",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L9",null,{"children":["$","$2",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Schedule Your Experience | ThriveWell Care Collective"}],["$","meta","1",{"name":"description","content":"Request a ThriveWell Care Collective™ appointment for massage, guided wellness, membership, CaregiverWell™, or MotherWell™ experiences in the Lehigh Valley."}],["$","link","2",{"rel":"manifest","href":"/ThriveWellCareCollective/manifest.webmanifest"}],["$","meta","3",{"name":"keywords","content":"ThriveWell Care Collective,massage Lehigh Valley,caregiver wellness,MotherWell,guided breathing,restorative massage Pennsylvania"}],["$","meta","4",{"name":"robots","content":"noindex, nofollow"}],["$","link","5",{"rel":"canonical","href":"https://thrivewellcarecollective.com/schedule/"}],["$","meta","6",{"property":"og:title","content":"ThriveWell Care Collective™"}],["$","meta","7",{"property":"og:description","content":"ThriveWell Care Collective™ offers restorative massage therapy, guided breathing and pranayama, guided relaxation, mindfulness, and grounding experiences for caregivers, mothers, and anyone who spends their life caring for others in the Lehigh Valley, Pennsylvania."}],["$","meta","8",{"property":"og:url","content":"https://thrivewellcarecollective.com/"}],["$","meta","9",{"property":"og:site_name","content":"ThriveWell Care Collective™"}],"$La","$Lb","$Lc","$Ld","$Le","$Lf","$L10","$L11","$L12","$L13","$L14","$L15","$L16","$L17","$L18","$L19","$L1a","$L1b","$L1c","$L1d","$L1e"]}]}]}],"$L1f"]}],"isPartial":"$@20","staleTime":"$7","varyParams":null},{"rsc":"$L21","isPartial":"$@22","staleTime":"$7","varyParams":"$23"}],"isUpgradeableISRFallback":false,"a":"$@24","rootVaryParams":null,"needsRuntimeRequest":"$@25"}
+26:I[27201,["/ThriveWellCareCollective/_next/static/chunks/3fntmmi971322.js","/ThriveWellCareCollective/_next/static/chunks/3oywsipmyu1sd.js"],"IconMark"]
+27:I[39756,["/ThriveWellCareCollective/_next/static/chunks/3fntmmi971322.js","/ThriveWellCareCollective/_next/static/chunks/3oywsipmyu1sd.js"],"default"]
+28:I[37457,["/ThriveWellCareCollective/_next/static/chunks/3fntmmi971322.js","/ThriveWellCareCollective/_next/static/chunks/3oywsipmyu1sd.js"],"default"]
+5:null
+a:["$","meta","10",{"property":"og:locale","content":"en_US"}]
+b:["$","meta","11",{"property":"og:image","content":"https://thelonestryker-12.github.io/ThriveWellCareCollective/og-hero-20261117.jpg"}]
+c:["$","meta","12",{"property":"og:image:type","content":"image/jpeg"}]
+d:["$","meta","13",{"property":"og:image:width","content":"1200"}]
+e:["$","meta","14",{"property":"og:image:height","content":"630"}]
+f:["$","meta","15",{"property":"og:image:alt","content":"ThriveWell Care Collective™. You spend your days caring for others. Let this be your time. Serving the Lehigh Valley, Pennsylvania"}]
+10:["$","meta","16",{"property":"og:type","content":"website"}]
+11:["$","meta","17",{"name":"twitter:card","content":"summary_large_image"}]
+12:["$","meta","18",{"name":"twitter:title","content":"ThriveWell Care Collective™"}]
+13:["$","meta","19",{"name":"twitter:description","content":"ThriveWell Care Collective™ offers restorative massage therapy, guided breathing and pranayama, guided relaxation, mindfulness, and grounding experiences for caregivers, mothers, and anyone who spends their life caring for others in the Lehigh Valley, Pennsylvania."}]
+14:["$","meta","20",{"name":"twitter:image","content":"https://thelonestryker-12.github.io/ThriveWellCareCollective/og-hero-20261117.jpg"}]
+15:["$","meta","21",{"name":"twitter:image:alt","content":"ThriveWell Care Collective™. You spend your days caring for others. Let this be your time. Serving the Lehigh Valley, Pennsylvania"}]
+16:["$","meta","22",{"name":"twitter:image:type","content":"image/jpeg"}]
+17:["$","meta","23",{"name":"twitter:image:width","content":"1200"}]
+18:["$","meta","24",{"name":"twitter:image:height","content":"630"}]
+19:["$","link","25",{"rel":"icon","href":"/favicon.ico?v=2","sizes":"48x48"}]
+1a:["$","link","26",{"rel":"icon","href":"/icon-32.png?v=2","sizes":"32x32","type":"image/png"}]
+1b:["$","link","27",{"rel":"icon","href":"/icon-192.png?v=2","sizes":"192x192","type":"image/png"}]
+1c:["$","link","28",{"rel":"icon","href":"/icon-512.png?v=2","sizes":"512x512","type":"image/png"}]
+1d:["$","link","29",{"rel":"apple-touch-icon","href":"/apple-touch-icon.png?v=2","sizes":"180x180","type":"image/png"}]
+1e:["$","$L26","30",{}]
+1f:["$","meta",null,{"name":"next-size-adjust","content":""}]
+21:["$","$1","c",{"children":[null,["$","$L27",null,{"parallelRouterKey":"children","template":["$","$L28",null,{}]}]]}]
+25:true
+7:300
+7:C
+24:0
+20:"$undefined"
+22:"$undefined"
+6:"$undefined"
