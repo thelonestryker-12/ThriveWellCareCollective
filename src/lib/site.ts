@@ -28,7 +28,8 @@ export const individualLinks = [
 ] as const;
 
 export const navLinks = [
+  { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/for-organizations", label: "For Organizations" },
-  { href: "/blog", label: "The ThriveWell Journal", headerLabel: "Journal" },
+  { href: "/blog", label: "The ThriveWell Journal" },
 ] as const;

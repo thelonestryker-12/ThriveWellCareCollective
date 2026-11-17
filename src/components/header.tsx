@@ -51,6 +51,14 @@ export function Header() {
 
         <nav className="hidden items-center gap-x-3 gap-y-1 lg:flex xl:gap-x-4" aria-label="Primary">
           <Link
+            href="/"
+            className={`whitespace-nowrap text-[12px] font-medium tracking-wide transition-colors xl:text-[13px] ${
+              pathname === "/" ? "text-teal" : "text-charcoal hover:text-teal"
+            }`}
+          >
+            Home
+          </Link>
+          <Link
             href="/about"
             className={`whitespace-nowrap text-[12px] font-medium tracking-wide transition-colors xl:text-[13px] ${
               pathMatches(pathname, "/about") ? "text-teal" : "text-charcoal hover:text-teal"
@@ -114,7 +122,7 @@ export function Header() {
               pathMatches(pathname, "/blog") ? "text-teal" : "text-charcoal hover:text-teal"
             }`}
           >
-            Journal
+            The ThriveWell Journal
           </Link>
         </nav>
 
@@ -153,6 +161,9 @@ export function Header() {
       {open ? (
         <div className="border-t border-sage/20 bg-ivory px-4 pt-4 pb-24 sm:pb-4 lg:hidden">
           <nav className="flex flex-col gap-1" aria-label="Mobile">
+            <Link href="/" onClick={() => setOpen(false)} className={`rounded-lg px-2 py-2 text-base ${pathname === "/" ? "font-semibold text-teal" : "text-charcoal hover:bg-eucalyptus/40"}`}>
+              Home
+            </Link>
             <Link href="/about" onClick={() => setOpen(false)} className={`rounded-lg px-2 py-2 text-base ${pathMatches(pathname, "/about") ? "font-semibold text-teal" : "text-charcoal hover:bg-eucalyptus/40"}`}>
               About
             </Link>
@@ -183,7 +194,7 @@ export function Header() {
                 ))}
               </ul>
             ) : null}
-            {navLinks.filter((link) => link.href !== "/about").map((link) => (
+            {navLinks.filter((link) => link.href !== "/" && link.href !== "/about").map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -192,7 +203,7 @@ export function Header() {
                   pathMatches(pathname, link.href) ? "font-semibold text-teal" : "text-charcoal hover:bg-eucalyptus/40"
                 }`}
               >
-                {"headerLabel" in link ? link.headerLabel : link.label}
+                {link.label}
               </Link>
             ))}
             <ButtonLink href="/schedule" className="mt-2 w-full">
