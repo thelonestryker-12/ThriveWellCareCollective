@@ -19,6 +19,7 @@ export const siteConfig = {
 
 export const siteTarget = process.env.SITE_TARGET === "ghpages" ? "ghpages" : "bluehost";
 export const isIndexableSite = siteTarget !== "ghpages";
+export const googleAnalyticsId = "G-QV7QJS25DV";
 
 const shareImagePath = "/og-hero-20261117.jpg";
 
