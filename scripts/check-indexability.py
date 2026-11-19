@@ -8,7 +8,17 @@ from pathlib import Path
 
 target = sys.argv[1] if len(sys.argv) > 1 else os.environ.get("SITE_TARGET", "bluehost")
 root = Path(sys.argv[2] if len(sys.argv) > 2 else "out")
-html_pages = [path for path in root.rglob("*.html") if path.is_file()]
+
+def is_search_console_file(path: Path) -> bool:
+    """Google's verification file is plain text and must not be judged as a page."""
+    if path.parent != root or path.suffix != ".html" or not path.name.startswith("google"):
+        return False
+    text = path.read_text(errors="ignore").strip()
+    return text.startswith("google-site-verification:")
+
+html_pages = [
+    path for path in root.rglob("*.html") if path.is_file() and not is_search_console_file(path)
+]
 robots_path = root / "robots.txt"
 
 noindex_tag = re.compile(
@@ -30,6 +40,8 @@ failures: list[str] = []
 if target == "bluehost":
     for path in root.rglob("*"):
         if not path.is_file() or path.suffix not in {".html", ".txt", ".js"}:
+            continue
+        if is_search_console_file(path):
             continue
         if "noindex" in path.read_text(errors="ignore").lower():
             failures.append(f"noindex in {path}")
