@@ -18,6 +18,7 @@ export default function MotherWellPage() {
         <SectionHeading
           eyebrow={motherWellIntro.eyebrow}
           title="Restorative massage and quiet time for mothers in the Lehigh Valley"
+          subtitle={motherWellIntro.title}
           intro={motherWellIntro.intro}
           as="h1"
         />
