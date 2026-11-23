@@ -17,7 +17,8 @@ import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: {
-    absolute: `${siteConfig.legalName} | Restorative Wellness in the Lehigh Valley`,
+    absolute:
+      "Licensed Massage & Restorative Wellness in the Lehigh Valley | ThriveWell Care Collective",
   },
   description: siteConfig.description,
   alternates: { canonical: "/" },

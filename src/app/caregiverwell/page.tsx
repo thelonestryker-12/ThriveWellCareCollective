@@ -4,7 +4,9 @@ import { PackageCard } from "@/components/service-cards";
 import { caregiverWellIntro, caregiverWellPackages } from "@/lib/services";
 
 export const metadata: Metadata = {
-  title: "CaregiverWell™ Experiences",
+  title: {
+    absolute: "Massage & Wellness for Caregivers in the Lehigh Valley | CaregiverWell™",
+  },
   description: caregiverWellIntro.intro,
   alternates: { canonical: "/caregiverwell" },
 };
@@ -15,7 +17,8 @@ export default function CaregiverWellPage() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow={caregiverWellIntro.eyebrow}
-          title={caregiverWellIntro.title}
+          title="Massage and restorative wellness for family and professional caregivers"
+          subtitle={caregiverWellIntro.title}
           intro={caregiverWellIntro.intro}
           as="h1"
         />

@@ -6,7 +6,10 @@ import { HowToStart } from "@/components/page-sections";
 import { massageServices, startingGuides, wellnessServices } from "@/lib/services";
 
 export const metadata: Metadata = {
-  title: "Services",
+  title: {
+    absolute:
+      "Licensed Massage Therapy & Guided Wellness in the Lehigh Valley | ThriveWell Care Collective",
+  },
   description:
     "Explore ThriveWell massage, guided breathing, relaxation, mindfulness, and grounding services. All massage is provided exclusively by licensed massage therapists.",
   alternates: { canonical: "/services" },
@@ -36,7 +39,8 @@ export default function ServicesPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Our Services"
-            title="Choose what feels restorative to you."
+            title="Licensed massage therapy and guided wellness in the Lehigh Valley"
+            subtitle="Choose what feels restorative to you."
             intro="Everyone restores differently. Our core ThriveWell services give you the flexibility to choose hands-on massage, guided wellness practices, or a combination of experiences."
             as="h1"
           />

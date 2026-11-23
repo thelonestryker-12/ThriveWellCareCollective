@@ -4,7 +4,9 @@ import { PackageCard } from "@/components/service-cards";
 import { motherWellIntro, motherWellPackages } from "@/lib/services";
 
 export const metadata: Metadata = {
-  title: "MotherWell™ Experiences",
+  title: {
+    absolute: "Massage & Wellness for Mothers in the Lehigh Valley | MotherWell™",
+  },
   description: motherWellIntro.intro,
   alternates: { canonical: "/motherwell" },
 };
@@ -15,7 +17,7 @@ export default function MotherWellPage() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow={motherWellIntro.eyebrow}
-          title={motherWellIntro.title}
+          title="Restorative massage and quiet time for mothers in the Lehigh Valley"
           intro={motherWellIntro.intro}
           as="h1"
         />

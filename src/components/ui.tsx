@@ -35,12 +35,14 @@ export function ButtonLink({
 export function SectionHeading({
   eyebrow,
   title,
+  subtitle,
   intro,
   align = "left",
   as: Heading = "h2",
 }: {
   eyebrow?: string;
   title: string;
+  subtitle?: string;
   intro?: string;
   align?: "left" | "center";
   as?: "h1" | "h2";
@@ -55,6 +57,9 @@ export function SectionHeading({
       <Heading className="font-serif text-3xl leading-tight text-teal sm:text-4xl md:text-5xl">
         {title}
       </Heading>
+      {subtitle ? (
+        <p className="mt-4 font-serif text-2xl italic text-teal">{subtitle}</p>
+      ) : null}
       {intro ? (
         <p className="mt-4 text-base leading-8 text-charcoal/90 sm:text-lg">{intro}</p>
       ) : null}
